@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fin tracker</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+
+    <header class="mb-3">
+      <nav class="navbar navbar-dark bg-primary">
+        <div class="navbar-header">
+          <%= link_to "Fin tracker", root_path, class: 'navbar-brand' %>
+        </div>
+        <% if user_signed_in? %>
+          <ul class="nav justify-content-end nav-pills">
+            <li class="nav-item">
+              <%= link_to "Пользователи", users_path, class: 'nav-link text-light' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Выйти", destroy_user_session_path, method: 'delete', class: 'btn btn-primary navbar-btn' %>
+            </li>
+          </ul>
+        <% end %>
+      </nav>
+    </header>
+
+    <div class="container">
+      <%= flash_massages if show_layout_flash?%>
+
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

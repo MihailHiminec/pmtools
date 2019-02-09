@@ -1,0 +1,31 @@
+en:
+  devise:
+    failure:
+      invited: "У вас есть приглашение, примите его, чтобы завершить создание учетной записи."
+    invitations:
+      send_instructions: "Приглашение было отправлено по электронной почте %{email}."
+      invitation_token_invalid: "Предоставленный token приглашения недействителен!"
+      updated: "Ваш пароль был успешно установлен. Теперь вы вошли в систему."
+      updated_not_active: "Ваш пароль был успешно установлен."
+      no_invitations_remaining: "Приглашений не осталось"
+      invitation_removed: "Ваше приглашение было удалено."
+      new:
+        header: "Отправить приглашение"
+        submit_button: "Отправить приглашение"
+      edit:
+        header: "Установите пароль"
+        submit_button: "Установить пароль"
+    mailer:
+      invitation_instructions:
+        subject: "Инструкция по приглашению"
+        hello: "Привет %{email}"
+        someone_invited_you: "Кто-то пригласил вас %{url}, вы можете принять приглашение по ссылке ниже."
+        accept: "Принять приглашение"
+        accept_until: "Это приглашение будет действительно до %{due_date}."
+        ignore: "Если вы не хотите принимать приглашение, проигнорируйте это письмо. Ваша учетная запись не будет создана, пока вы не перейдете по ссылке выше и не установите пароль."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

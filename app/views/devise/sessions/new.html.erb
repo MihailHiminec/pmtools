@@ -1,0 +1,37 @@
+<div class="col-md-4 offset-md-4 card">
+  <div class="card-body">
+
+    <h2>Войти</h2>
+
+    <%= simple_form_for(resource, as: resource_name,
+                        url: session_path(resource_name),
+                        wrapper_mappings: { boolean: :vertical_boolean }) do |f| %>
+      <%= f.input :email, label: false do %>
+        <div class="input-group input-group-sm">
+          <%= f.input_field :email, autofocus: true, autocomplete: "email", class: 'form-control form-control-sm', placeholder: 'E-mail' %>
+        </div>
+      <% end %>
+
+      <%= f.input :password, label: false do %>
+        <div class="input-group input-group-sm">
+          <%= f.input_field :password, class: 'form-control form-control-sm', placeholder: 'password' %>
+        </div>
+      <% end %>
+
+      <% if devise_mapping.rememberable? %>
+        <%= f.input :remember_me, as: :boolean %>
+      <% end %>
+
+      <div class="actions">
+        <%= f.button :submit, "Войти", class: "btn btn-primary btn-sm" %>
+      </div>
+    <% end %>
+
+    <p class="mt-2">
+      <%= render "devise/shared/links" %>
+    </p>
+
+    <%= flash_massages layout_flash:false %>
+
+  </div>
+</div>

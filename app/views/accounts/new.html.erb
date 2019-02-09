@@ -1,0 +1,24 @@
+<div class="col-md-4 offset-md-4 card">
+  <div class="card-body">
+    <h2>Зарегистрировать аккаунт</h2>
+    <%= simple_form_for @account do |f| %>
+
+      <%= f.fields_for :owner do |o| %>
+        <%= o.input :name %>
+        <%= o.input :email %>
+        <%= o.input :password %>
+        <%= o.input :password_confirmation %>
+      <% end %>
+
+      <%= f.input :subdomain do %>
+        <div class="input-group">
+          <%= f.input_field :subdomain, class: 'form-control' %>
+          <div class="input-group-append">
+            <span class="input-group-text">.fintracker.dev</span>
+          </div>
+        </div>
+      <% end %>
+      <%= f.button :submit, class: 'btn-primary btn-sm' %>
+    <% end %>
+  </div>
+</div>
