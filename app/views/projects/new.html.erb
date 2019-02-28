@@ -1,4 +1,7 @@
-<div class="col-md-4 offset-md-4 card">
+<main id="content" role="main">
+  <div class="u-bg-light-blue-50">
+    <div class="container u-space-3">
+      <div class="col-md-4 offset-md-4 card">
   <div class="card-body">
     <h2>Создать проект</h2>
     <%= simple_form_for @project do |f| %>
@@ -8,7 +11,14 @@
         </div>
       <% end %>
 
+        <div class="input-group">
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+
       <%= f.button :submit, class: 'btn-primary btn-sm' %>
     <% end %>
   </div>
 </div>
+    </div>
+  </div>
+</main>

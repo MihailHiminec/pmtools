@@ -1,0 +1,391 @@
+<main id="content" role="main">
+  <div class="u-bg-light-blue-50">
+    <div class="container u-space-3">
+
+
+
+    <!-- Balances -->
+    <div class="card-deck d-block d-lg-flex mb-6">
+      <!-- Card -->
+      <div class="card mb-3 mb-lg-0">
+        <div class="card-body p-5">
+          <div class="media">
+                <span class="u-icon u-icon-primary--air u-icon--xl rounded-circle mr-4">
+                  <span class="fa font-size-26 u-icon__inner">₽</span>
+                </span>
+            <div class="media-body">
+              <span class="d-block font-size-32">₽ 45 000</span>
+              <h2 class="h6 text-secondary font-weight-normal mb-0">Доступный остаток</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+
+      <!-- Card -->
+      <div class="card mb-3 mb-lg-0">
+        <div class="card-body p-5">
+          <div class="media">
+                <span class="u-icon u-icon-success--air u-icon--xl rounded-circle mr-4">
+                  <span class="fa fa-coins font-size-26 u-icon__inner"></span>
+                </span>
+            <div class="media-body">
+              <span class="d-block font-size-32">₽ 132 000</span>
+              <h3 class="h6 text-secondary font-weight-normal mb-0">Вознаграждения</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+
+      <!-- Card -->
+      <div class="card">
+        <div class="card-body p-5">
+          <div class="media">
+                <span class="u-icon u-icon-warning--air u-icon--xl rounded-circle mr-4">
+                  <span class="fa fa-exchange-alt font-size-26 u-icon__inner"></span>
+                </span>
+            <div class="media-body">
+              <span class="d-block font-size-32">₽ 0.00</span>
+              <h3 class="h6 text-secondary font-weight-normal mb-0">В ожидании оплаты</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Card -->
+    </div>
+    <!-- End Balances -->
+
+    <!-- Title -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="h6 mb-0">Ваши источники дохода</h3>
+      <%= link_to "Показать все", projects_path, class: 'u-link-muted' %>
+    </div>
+    <!-- End Title -->
+
+    <!-- Earning Sources -->
+    <div class="mb-7">
+      <div class="card-deck d-block d-lg-flex">
+        <% @projects.reverse.take(3).each do |project| %>
+          <div class="card u-info-v2 mb-3">
+              <div class="card-body p-4">
+                <div class="media align-items-center">
+                  <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-3">
+                    <span class="u-icon__inner"><%= project.title[0,2].upcase %></span>
+                  </span>
+                  <div class="media-body">
+                    <span class="text-dark"><%= link_to project.title, project %></span>
+                    <small class="d-block text-secondary"><%= project.description %></small>
+                  </div>
+                  <div class="media-body text-right">
+                    <!-- Settings Dropdown -->
+                    <div class="position-relative">
+                      <a id="referralsSettingsDropdownInvoker-<%= project.id %>" class="u-icon u-icon--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
+                         aria-controls="referralsSettingsDropdown-<%= project.id %>"
+                         aria-haspopup="true"
+                         aria-expanded="false"
+                         data-unfold-event="click"
+                         data-unfold-target="#referralsSettingsDropdown-<%= project.id %>"
+                         data-unfold-type="css-animation"
+                         data-unfold-duration="300"
+                         data-unfold-delay="300"
+                         data-unfold-hide-on-scroll="true"
+                         data-unfold-animation-in="slideInUp"
+                         data-unfold-animation-out="fadeOut">
+                        <span class="fa fa-ellipsis-h u-icon__inner"></span>
+                      </a>
+
+                      <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
+                        <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
+                      </div>
+                    </div>
+                    <!-- End Settings Dropdown -->
+                    <span class="text-primary ml-3">
+                      ₽<%= project.budget %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+    <!-- End Earning Sources -->
+
+    <!-- Card -->
+    <div class="card-deck d-block d-lg-flex">
+      <!-- Stats -->
+      <div class="card mb-7 mb-lg-0">
+        <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
+          <!-- Title & Settings -->
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="h6 mb-0">Deposits</h4>
+
+            <!-- Settings Dropdown -->
+            <div class="position-relative">
+              <a id="depositSettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button" aria-controls="depositSettingsDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#depositSettingsDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                <span class="fa fa-ellipsis-h u-icon__inner"></span>
+              </a>
+
+              <div id="depositSettingsDropdown" class="u-unfold right-0 text-left mt-2 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="depositSettingsDropdownInvoker" style="min-width: 190px; animation-duration: 300ms;">
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-cogs min-width-3 text-center font-size-13 mr-2"></span>
+                  Settings
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-cloud-download-alt min-width-3 text-center font-size-13 mr-2"></span>
+                  Download
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
+                  Archive
+                </a>
+              </div>
+            </div>
+            <!-- End Settings Dropdown -->
+          </div>
+          <!-- End Title & Settings -->
+
+          <hr class="mt-3 mb-4">
+
+          <!-- Deposit Info -->
+          <div class="row mb-5">
+            <div class="col-sm-6 mb-4 mb-sm-0">
+              <span class="align-top">$</span>
+              <span class="font-size-32 font-weight-medium text-lh-sm">50,102</span>
+              <div class="mb-1">
+                <span class="text-secondary font-size-14">Deposit:</span>
+                <span class="font-weight-medium font-size-14">$1,050</span>
+              </div>
+              <div>
+                    <span class="text-primary font-weight-medium text-lh-sm">
+                      <span class="fa fa-arrow-up text-success font-size-13"></span>
+                      +2.1% ($122)
+                    </span>
+              </div>
+            </div>
+
+            <div class="col-sm-6 align-self-end">
+              <!-- Pie Circle -->
+              <div class="js-pie text-center" data-circles-value="54" data-circles-max-value="100" data-circles-bg-color="rgba(0, 201, 167, 0.1)" data-circles-fg-color="#00c9a7" data-circles-radius="50" data-circles-stroke-width="4" data-circles-additional-text="%" data-circles-duration="2000" data-circles-scroll-animate="true" data-circles-color="#00c9a7" data-circles-font-size="24" id="hs-pie-1"><div class="u-circles-wrap" style="position: relative; display: inline-block;"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path fill="transparent" stroke="rgba(0, 201, 167, 0.1)" stroke-width="4" d="M 49.990223686222635 2.000000995586582 A 48 48 0 1 1 49.93332896297256 2.0000463023887676 Z" class="u-circles-maxValueStroke"></path><path fill="transparent" stroke="#00c9a7" stroke-width="4" d="M 49.990223686222635 2.000000995586582 A 48 48 0 1 1 38.11513781023752 96.5053765787393 " class="u-circles-valueStroke"></path></svg><div class="u-circles-text" style="position: absolute; top: 0px; left: 0px; text-align: center; width: 100%; font-size: 24px; height: 100px; line-height: 100px; color: rgb(0, 201, 167);">54%</div></div></div>
+              <!-- End Pie Circle -->
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-block btn-sm btn-primary u-btn-primary transition-3d-hover">Add Funds</button>
+          <!-- End Deposit Info -->
+        </div>
+
+        <div class="card-footer p-5">
+          <!-- Progress Info -->
+          <div class="row align-items-center">
+            <div class="col-6 u-ver-divider">
+              <label class="small text-muted">Goal:</label>
+              <small class="font-weight-medium">$100k</small>
+              <div class="js-hr-progress progress" style="height: 4px;">
+                <div class="js-hr-progress-bar progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <label class="small text-muted">Duration:</label>
+              <small class="font-weight-medium">6 months</small>
+              <div class="js-hr-progress progress" style="height: 4px;">
+                <div class="js-hr-progress-bar progress-bar bg-success" role="progressbar" style="width: 40%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+          <!-- End Progress Info -->
+        </div>
+      </div>
+      <!-- End Stats -->
+
+      <!-- Stats -->
+      <div class="card mb-7 mb-lg-0">
+        <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
+          <!-- Title & Settings -->
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="h6 mb-0">Balance</h4>
+
+            <!-- Settings Dropdown -->
+            <div class="position-relative">
+              <a id="balanceSettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button" aria-controls="balanceSettingsDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#balanceSettingsDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                <span class="fa fa-ellipsis-h u-icon__inner"></span>
+              </a>
+
+              <div id="balanceSettingsDropdown" class="u-unfold right-0 text-left mt-2 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="balanceSettingsDropdownInvoker" style="min-width: 190px; animation-duration: 300ms;">
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-cogs min-width-3 text-center font-size-13 mr-2"></span>
+                  Settings
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-cloud-download-alt min-width-3 text-center font-size-13 mr-2"></span>
+                  Download
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
+                  Archive
+                </a>
+              </div>
+            </div>
+            <!-- End Settings Dropdown -->
+          </div>
+          <!-- End Title & Settings -->
+
+          <hr class="mt-3 mb-4">
+
+          <!-- Balance Info -->
+          <div class="row align-items-center mb-4">
+            <div class="col-6 u-ver-divider">
+              <label class="d-block small text-muted mb-0">Available:</label>
+              <span class="font-weight-medium">$45.99</span>
+            </div>
+
+            <div class="col-6">
+              <label class="d-block small text-muted mb-0">Pending:</label>
+              <span class="font-weight-medium">$0.00</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-3">
+              <div class="js-vr-progress u-progress-vertical rounded mb-2">
+                <div class="js-vr-progress-bar bg-primary rounded-bottom" role="progressbar" style="height: 45%;" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="text-center">
+                <h4 class="small mb-0">May</h4>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="js-vr-progress u-progress-vertical rounded mb-2">
+                <div class="js-vr-progress-bar bg-primary rounded-bottom" role="progressbar" style="height: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="text-center">
+                <h4 class="small mb-0">Jun</h4>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="js-vr-progress u-progress-vertical rounded mb-2">
+                <div class="js-vr-progress-bar bg-primary rounded-bottom" role="progressbar" style="height: 23%;" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="text-center">
+                <h4 class="small mb-0">Jul</h4>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="js-vr-progress u-progress-vertical rounded mb-2">
+                <div class="js-vr-progress-bar bg-primary rounded-bottom" role="progressbar" style="height: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="text-center">
+                <h4 class="small mb-0">Aug</h4>
+              </div>
+            </div>
+          </div>
+          <!-- End Balance Info -->
+        </div>
+      </div>
+      <!-- End Stats -->
+
+      <!-- Indicator -->
+      <div class="card">
+        <div class="card-body pt-4 pb-5 px-5 mb-3 mb-md-0">
+          <!-- Title & Settings -->
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="h6 mb-0">Activity</h4>
+
+            <!-- Settings Dropdown -->
+            <div class="position-relative">
+              <a id="activitySettingsDropdownInvoker" class="u-icon u-icon-secondary--air u-icon--sm u-bg-transparent" href="javascript:;" role="button" aria-controls="activitySettingsDropdown" aria-haspopup="true" aria-expanded="false" data-unfold-event="click" data-unfold-target="#activitySettingsDropdown" data-unfold-type="css-animation" data-unfold-duration="300" data-unfold-delay="300" data-unfold-hide-on-scroll="true" data-unfold-animation-in="slideInUp" data-unfold-animation-out="fadeOut">
+                <span class="fa fa-ellipsis-h u-icon__inner"></span>
+              </a>
+
+              <div id="activitySettingsDropdown" class="u-unfold right-0 text-left mt-2 u-unfold--css-animation u-unfold--hidden fadeOut" aria-labelledby="activitySettingsDropdownInvoker" style="min-width: 190px; animation-duration: 300ms;">
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-eye min-width-3 text-center font-size-13 mr-2"></span>
+                  Mark as read
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-eye-slash min-width-3 text-center font-size-13 mr-2"></span>
+                  Mark as unread
+                </a>
+                <a class="u-list__link" href="#">
+                  <span class="fa fa-archive min-width-3 text-center font-size-13 mr-2"></span>
+                  Archive
+                </a>
+              </div>
+            </div>
+            <!-- End Settings Dropdown -->
+          </div>
+          <!-- End Title & Settings -->
+
+          <hr class="mt-3 mb-4">
+
+          <div class="js-scrollbar pr-3 mCustomScrollbar _mCS_1 mCS-autoHide" style="max-height: 300px; position: relative; overflow: visible;"><div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" style="max-height: 300px;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+            <!-- Activity Feed -->
+            <ul class="list-unstyled">
+              <li class="media u-indicator-ver-dashed-modern mb-3">
+                    <span class="u-icon u-icon-primary u-icon--xs rounded-circle mr-3">
+                      <span class="u-icon__inner">A</span>
+                    </span>
+                <div class="media-body">
+                  <h5 class="font-size-14 mb-1">Amanta Owens</h5>
+                  <p class="small mb-1">Added new task: <span class="font-weight-medium">Slack home page redesign</span></p>
+                  <small class="d-block text-muted">30 min ago</small>
+                </div>
+              </li>
+
+              <li class="media u-indicator-ver-dashed-modern mb-3">
+                    <span class="u-icon u-icon-success u-icon--xs rounded-circle mr-3">
+                      <span class="u-icon__inner">S</span>
+                    </span>
+                <div class="media-body">
+                  <h5 class="font-size-14 mb-1">Sebastian Diaz</h5>
+                  <p class="small mb-1">Added new task: <span class="font-weight-medium">Mapbox logo redesign</span></p>
+                  <small class="d-block text-muted">44 min ago</small>
+                </div>
+              </li>
+
+              <li class="media u-indicator-ver-dashed-modern mb-3">
+                    <span class="u-icon u-icon-warning u-icon--xs rounded-circle mr-3">
+                      <span class="u-icon__inner text-white">F</span>
+                    </span>
+                <div class="media-body">
+                  <h5 class="font-size-14 mb-1">Eliza Donovan</h5>
+                  <p class="small mb-1">Added new task: <span class="font-weight-medium">Spotify branding</span></p>
+                  <small class="d-block text-muted">1 hour ago</small>
+                </div>
+              </li>
+
+              <li class="media u-indicator-ver-dashed-modern mb-3">
+                    <span class="u-icon u-icon-primary u-icon--xs rounded-circle mr-3">
+                      <span class="u-icon__inner">C</span>
+                    </span>
+                <div class="media-body">
+                  <h5 class="font-size-14 mb-1">Cler Lockhart</h5>
+                  <p class="small mb-1">Added new task: <span class="font-weight-medium">Dropbox home page redesign</span></p>
+                  <small class="d-block text-muted">15 hours ago</small>
+                </div>
+              </li>
+
+              <li class="media mb-3">
+                    <span class="u-icon u-icon-danger u-icon--xs rounded-circle mr-3">
+                      <span class="u-icon__inner">J</span>
+                    </span>
+                <div class="media-body">
+                  <h5 class="font-size-14 mb-1">James Collins</h5>
+                  <p class="small mb-1">Added new task: <span class="font-weight-medium">InVison branding</span></p>
+                  <small class="d-block text-muted">1 day ago</small>
+                </div>
+              </li>
+            </ul>
+            <!-- End Activity Feed -->
+          </div></div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 195px; max-height: 266px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+        </div>
+      </div>
+      <!-- End Indicator -->
+    </div>
+    <!-- End Card -->
+    </div>
+  </div>
+</main>

@@ -20,14 +20,15 @@ private
       redirect_to root_url(subdomain: false)
     end
   end
-  #def current_user
-  #  @current_user ||= Account.find_by(subdomain: request.subdomain)
-  #end
+  def current_user?(user)
+    user == current_user
+  end
+
   def current_account
     @current_account ||= Account.find_by(subdomain: request.subdomain)
   end
   helper_method :current_account
-  #helper_method :current_user
+
 
   def set_mailer_host
     subdomain = current_account ? "#{current_account.subdomain}." : ""

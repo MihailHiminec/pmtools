@@ -1,0 +1,42 @@
+<main id="content" role="main">
+  <div class="u-bg-light-blue-50">
+    <div class="container u-space-3">
+      <div class="col-md-8 offset-md-2">
+  <h4>Добавить задачу</h4>
+  <div class="card">
+    <div class="card-body">
+      <%= simple_form_for @todo, url: project_todos_url, method: :post do |f| %>
+        <%= f.input :title do %>
+          <div class="input-group">
+            <%= f.input_field :title, class: 'form-control' %>
+          </div>
+        <% end %>
+        <%= f.input :discription do %>
+          <div class="input-group">
+            <%= f.text_area :discription, class: 'form-control' %>
+          </div>
+        <% end %>
+        <%= f.input :cost do %>
+          <div class="input-group">
+            <%= f.input_field :cost, class: 'form-control' %>
+          </div>
+        <% end %>
+        <%= f.input :time_to_complete do %>
+          <div class="input-group">
+            <%= f.input_field :time_to_complete, class: 'form-control' %>
+          </div>
+        <% end %>
+        <%= f.input :time_spent do %>
+          <div class="input-group">
+            <%= f.input_field :time_spent, class: 'form-control' %>
+          </div>
+        <% end %>
+
+        <%= f.button :submit, class: 'btn-primary btn-sm' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</main>

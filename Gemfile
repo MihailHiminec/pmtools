@@ -17,13 +17,17 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 # User install gem
-gem 'bootstrap', '~> 4.2', '>= 4.2.1'
+ gem 'bootstrap', '~> 4.2', '>= 4.2.1'
 gem 'devise', '~> 4.5'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 # gem 'fontawesome5-rails', '~> 5.2'
 gem 'apartment', '~> 2.2'
 gem 'devise_invitable', '~> 1.7', '>= 1.7.5'
 gem 'simple_form', '~> 4.1'
+gem 'by_star', '~> 3.0'
+gem 'russian', '~> 0.6.0'
+gem 'sidekiq', '~> 5.2', '>= 5.2.5'
+gem 'paper_trail', '~> 10.2'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

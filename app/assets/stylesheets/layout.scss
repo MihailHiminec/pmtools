@@ -1,12 +1,31 @@
 #flash_notice {
-  @extend .alert;
-  @extend .alert-success;
+  @extend .alert !optional;
+  @extend .alert-success !optional;
 }
 #flash_error, #flash_alert {
-  @extend .alert;
-  @extend .alert-danger;
+  @extend .alert !optional;
+  @extend .alert-danger !optional;
 }
 #flash_warning {
-  @extend .alert;
-  @extend .alert-warning;
+  @extend .alert !optional;
+  @extend .alert-warning !optional;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  height: 100%;
+  margin-bottom: 72px;
+}
+
+.u-sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 72px;
 }

@@ -2,6 +2,10 @@ require_relative 'boot'
 
 require "rails"
 # Pick the frameworks you want:
+require File.expand_path('../boot', __FILE__)
+
+require 'csv'
+require 'rails/all'
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
@@ -18,10 +22,11 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Untitled1
+module ToDo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.i18n.default_locale = :ru
     #config.middleware.use Apartment::Elevators::Subdomain
 
     # Settings in config/environments/* take precedence over those specified here.

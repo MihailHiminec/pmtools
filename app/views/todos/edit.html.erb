@@ -1,0 +1,85 @@
+<main id="content" role="main">
+  <div class="u-bg-light-blue-50">
+    <%= simple_form_for @todo, url: project_todo_path do |f| %>
+      <div class="container u-space-3 u-space-1-bottom u-space-bottom-0--lg">
+        <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
+          <!-- Navbar -->
+          <div class="u-header u-header--bg-transparent-lg z-index-4">
+            <div class="u-header__section ">
+              <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar hs-menu-initialized hs-menu-horizontal">
+                <div id="breadcrumbNavBar" class="collapse navbar-collapse py-0">
+                  <ul class="navbar-nav w-100 u-header__navbar-nav">
+                    <!-- Others -->
+                    <li class="nav-item u-header__nav-item">
+                      <%= link_to 'Назад', project_path(@todo.project_id), class: "nav-link u-header__nav-link" %>
+                    </li>
+                    <!-- Others -->
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+          <!-- End Navbar -->
+
+          <div class="ml-lg-auto">
+            <!-- Button -->
+            <%= f.button :submit, class: 'btn-success btn-xs' %>
+            <!-- End Button -->
+          </div>
+        </div>
+      </div>
+      <div class="container u-space-1-bottom">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+                    <%= f.input :cost, label: 'Стоимость' do %>
+                      <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                        <%= f.input_field :cost, class: 'form-control u-form__input' %>
+                      </div>
+                    <% end %>
+                    <%= f.input :time_to_complete, label: 'Выделенное время' do %>
+                      <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                        <%= f.input_field :time_to_complete, class: 'form-control u-form__input' %>
+                      </div>
+                    <% end %>
+                    <%= f.input :time_spent, label: 'Затраченое время' do %>
+                      <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                        <%= f.input_field :time_spent, class: 'form-control u-form__input' %>
+                      </div>
+                    <% end %>
+
+
+                    <div class="form-group">
+                      <%= f.association :user, label_method: :email, class: 'form-control form-control-sm', label: false %>
+                    </div>
+
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9">
+              <div class="card">
+                <div class="card-body">
+
+                  <%= f.input :title, label: false do %>
+                    <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                      <%= f.input_field :title, class: 'form-control u-form__input' %>
+                    </div>
+                  <% end %>
+
+                  <%= f.input :discription, label: 'Содержание задачи' do %>
+                    <div class="input-group input-group-sm u-form u-form--sm u-form--modern u-summernote-editor">
+                      <%= f.text_area :discription, class: 'form-control u-form__input js-summernote-editor' %>
+                    </div>
+                  <% end %>
+
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+</main>

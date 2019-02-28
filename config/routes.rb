@@ -12,10 +12,12 @@ end
 
 Rails.application.routes.draw do
   constraints(SubdomainPresent) do
-    root 'projects#index', as: :subdomain_root
+    root 'dashboard#index', as: :subdomain_root
     devise_for :users
     resources :users, only: :index
-    resources :projects, only: [:new, :create, :destroy, :show, :edit ]
+    resources :projects, only: [:index, :new, :create, :destroy, :show, :edit, :update] do
+      resources :todos
+    end
   end
 
   constraints(SubdomainBlanck) do

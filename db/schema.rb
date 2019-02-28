@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_163221) do
+ActiveRecord::Schema.define(version: 2019_02_26_202637) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "subdomain"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 2019_02_08_163221) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.integer "budget", default: 0
+    t.integer "cost_per_hour", default: 0
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
@@ -31,10 +34,13 @@ ActiveRecord::Schema.define(version: 2019_02_08_163221) do
     t.string "title"
     t.string "discription"
     t.integer "user_id"
-    t.boolean "isCompleted"
+    t.boolean "isCompleted", default: false
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "cost", default: 0
+    t.integer "time_to_complete", default: 0
+    t.integer "time_spent", default: 0
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
