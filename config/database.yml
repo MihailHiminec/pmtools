@@ -17,6 +17,6 @@ test:
 
 production:
   <<: *default
-  database: myapp_production
-  username: myapp
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  username: < %= ENV['POSTGRES_USER'] %>
+  password: < %= ENV['POSTGRES_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
