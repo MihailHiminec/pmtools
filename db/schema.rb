@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_02_26_202637) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "accounts", force: :cascade do |t|
     t.string "subdomain"
     t.integer "owner_id"

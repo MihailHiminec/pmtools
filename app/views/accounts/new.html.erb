@@ -7,7 +7,7 @@
           <div class="row no-gutters">
             <div class="col-md-8 col-lg-7 col-xl-6 offset-md-2 offset-lg-2 offset-xl-3 u-space-3 u-space-0--lg">
               <!-- Form -->
-              <form class="js-validate">
+              <%= simple_form_for @account do |f| %>
                 <!-- Title -->
                 <div class="mb-7">
                   <h1 class="h3 text-primary font-weight-normal mb-0">Зарегистрировать <span class="font-weight-bold">аккаунт</span></h1>
@@ -15,7 +15,7 @@
                 </div>
                 <!-- End Title -->
 
-                <%= simple_form_for @account do |f| %>
+
                   <%= f.fields_for :owner do |o| %>
                     <%= o.input :name, label: 'Имя', label_html: { class: 'h6 small d-block text-uppercase' }, class: "js-form-message mb-4" do %>
                       <div class="js-focus-state input-group u-form">
@@ -47,115 +47,37 @@
                       </div>
                     </div>
                   <% end %>
-                  <%= f.button :submit, class: 'btn-primary btn-sm' %>
+
+                  <!-- Checkbox -->
+                  <div class="js-form-message mb-5">
+                    <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
+                      <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
+                             data-msg="Please accept our Terms and Conditions."
+                             data-error-class="u-has-error"
+                             data-success-class="u-has-success">
+                      <label class="custom-control-label" for="termsCheckbox">
+                        <small>
+                          I agree to the
+                          <a class="u-link-muted" href="/terms.html">Terms and Conditions</a>
+                        </small>
+                      </label>
+                    </div>
+                  </div>
+                  <!-- End Checkbox -->
+
+                  <!-- Button -->
+                  <div class="row align-items-center mb-5">
+                    <div class="col-5 col-sm-6">
+                      <span class="small text-muted">Already have an account?</span>
+                      <a class="small" href="login-simple.html">Login</a>
+                    </div>
+
+                    <div class="col-7 col-sm-6 text-right">
+                      <%= f.button :submit, class: 'btn btn-primary u-btn-primary transition-3d-hover' %>
+                    </div>
+                  </div>
+                  <!-- End Button -->
                 <% end %>
-
-                <!-- Input -->
-                <div class="js-form-message mb-4">
-                  <label class="h6 small d-block text-uppercase">Email address</label>
-
-                  <div class="js-focus-state input-group u-form">
-                    <input type="email" class="form-control u-form__input form-control-sm" name="email" required
-                           placeholder="jack@walley.com"
-                           aria-label="jack@walley.com"
-                           data-msg="Please enter a valid email address."
-                           data-error-class="u-has-error"
-                           data-success-class="u-has-success">
-                  </div>
-                </div>
-                <!-- End Input -->
-
-                <!-- Input -->
-                <div class="js-form-message mb-4">
-                  <label class="h6 small d-block text-uppercase">Password</label>
-
-                  <div class="js-focus-state input-group u-form">
-                    <input type="password" class="form-control u-form__input form-control-sm" name="password" required
-                           placeholder="********"
-                           aria-label="********"
-                           data-msg="Your password is invalid. Please try again."
-                           data-error-class="u-has-error"
-                           data-success-class="u-has-success">
-                  </div>
-                </div>
-                <!-- End Input -->
-
-                <!-- Input -->
-                <div class="js-form-message mb-3">
-                  <label class="h6 small d-block text-uppercase">Confirm Password</label>
-
-                  <div class="js-focus-state input-group u-form">
-                    <input type="password" class="form-control u-form__input form-control-sm" name="confirmPassword" required
-                           placeholder="********"
-                           aria-label="********"
-                           data-msg="Password does not match the confirm password."
-                           data-error-class="u-has-error"
-                           data-success-class="u-has-success">
-                  </div>
-                </div>
-                <!-- End Input -->
-
-                <!-- Checkbox -->
-                <div class="js-form-message mb-5">
-                  <div class="custom-control custom-checkbox d-flex align-items-center text-muted">
-                    <input type="checkbox" class="custom-control-input" id="termsCheckbox" name="termsCheckbox" required
-                           data-msg="Please accept our Terms and Conditions."
-                           data-error-class="u-has-error"
-                           data-success-class="u-has-success">
-                    <label class="custom-control-label" for="termsCheckbox">
-                      <small>
-                        I agree to the
-                        <a class="u-link-muted" href="../pages/terms.html">Terms and Conditions</a>
-                      </small>
-                    </label>
-                  </div>
-                </div>
-                <!-- End Checkbox -->
-
-                <!-- Button -->
-                <div class="row align-items-center mb-5">
-                  <div class="col-5 col-sm-6">
-                    <span class="small text-muted">Already have an account?</span>
-                    <a class="small" href="login-simple.html">Login</a>
-                  </div>
-
-                  <div class="col-7 col-sm-6 text-right">
-                    <button type="submit" class="btn btn-primary u-btn-primary transition-3d-hover">Get Started</button>
-                  </div>
-                </div>
-                <!-- End Button -->
-              </form>
-              <!-- End Form -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- End Form -->
-
-      <div class="col-md-4 offset-md-4 card">
-        <div class="card-body">
-          <h2>Зарегистрировать аккаунт</h2>
-          <%= simple_form_for @account do |f| %>
-
-            <%= f.fields_for :owner do |o| %>
-              <%= o.input :name %>
-              <%= o.input :email %>
-              <%= o.input :password %>
-              <%= o.input :password_confirmation %>
-            <% end %>
-
-            <%= f.input :subdomain do %>
-              <div class="input-group">
-                <%= f.input_field :subdomain, class: 'form-control' %>
-                <div class="input-group-append">
-                  <span class="input-group-text">.fintracker.dev</span>
-                </div>
-              </div>
-            <% end %>
-            <%= f.button :submit, class: 'btn-primary btn-sm' %>
-          <% end %>
-        </div>
-      </div>
     </div>
   </div>
 </main>
