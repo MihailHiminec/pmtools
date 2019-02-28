@@ -26,6 +26,6 @@ test:
 
 production:
   <<: *default
-  database: pmtools_production
-  username: postgres
+  database: myapp_production
+  username: myapp
   password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
