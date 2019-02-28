@@ -17,8 +17,8 @@ test:
 
 production:
   adapter: postgresql
+  database: d5bmk85lh106ah
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  username: < %= ENV['POSTGRES_USER'] %>
-  password: < %= ENV['POSTGRES_PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
+  username: acurxxhdwqieec
+  password: 351e889a5cbd2ed0c0d1c03047c65c817042d6cea8996213ad64a47a1daa05ce
