@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.order(id: :desc).all
+    @search = ProjectSearch.new filters: params[:f]
   end
 
   def new

@@ -1,64 +1,203 @@
-<main id="content" role="main">
-  <div class="u-bg-light-blue-50">
-    <div class="container u-space-3">
-      <%= flash_massages if show_layout_flash?%>
-      <div class="d-flex bd-highlight">
-        <div class="p-2 flex-grow-1 bd-highlight"><strong><%= @project.title %></strong></div>
-        <div class="p-2 bd-highlight"><p class="badge badge-primary"><%= @project.created_at.strftime("%d %b %Y") %></p></div>
-        <div class="p-2 bd-highlight"><p class="badge badge-dark">Последняя задача</p></div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-            <div class="d-flex bd-highlight">
-              <div class="p-2 flex-grow-1 bd-highlight">
-                <strong>Бюджет</strong> <%= cost_project_todo_budjet %> руб.
-              </div>
-              <div class="p-2 bd-highlight">
-                <%= link_to 'Изменить', edit_project_path %>
-              </div>
-            </div>
-          <br>
-          <p class="font-weight-light ml-2">Себистоимость <%= cost_project_todo %> руб.</p>
-          <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow= "75" aria-valuemin="0" aria-valuemax="100" style="width: <%= cost_project_todo_complete %>%"></div>
-          </div>
-        </div>
-      </div>
+<main id="content" role="main" class="calc-100vh-footer">
+  <div class="u-bg-light-blue-50 calc-100vh-footer">
+    <div class="container u-space-2">
 
-      <br>
+      <div class="bg-white p-4 mt-5">
+        <%= flash_massages if show_layout_flash?%>
 
-      <div class="card">
-        <div class="card-body">
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">
-              <strong>Задачи</strong>
-            </div>
-            <div class="p-2 bd-highlight">
-              <div class="btn-group btn-group-xs" role="group">
-                <%= link_to "Скачать CSV", project_todos_url(@project, format: "csv"), class: "btn btn-xs btn-outline-primary u-btn-primary" %>
-                <%= link_to 'Добавить', new_project_todo_path(@project), class: "btn btn-xs btn-outline-primary u-btn-primary" %>
+        <!-- Nav -->
+        <div class="row justify-content-between align-items mb-4">
+          <div class="order-md-2 mb-3 mb-md-0">
+            <div class="position-relative">
+              <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
+                 aria-controls="dropdownBasicExample"
+                 aria-haspopup="true"
+                 aria-expanded="true"
+                 data-unfold-event="hover"
+                 data-unfold-target="#dropdownBasicExample"
+                 data-unfold-type="css-animation"
+                 data-unfold-duration="300"
+                 data-unfold-delay="300"
+                 data-unfold-hide-on-scroll="true"
+                 data-unfold-animation-in="slideInUp"
+                 data-unfold-animation-out="fadeOut">
+                Выполнить действие
+                <span class="ml-2 fa fa-ellipsis-v"></span>
+              </a>
+
+              <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
+                <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
+                <%= link_to 'Изменить проект', edit_project_url, method: :get , class: 'u-list__link' %>
+                <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
+                <hr>
+                <a class="u-list__link" href="#">Удалить проект</a>
               </div>
             </div>
           </div>
 
-          <hr>
-          <table class="table table-borderless">
-            <tbody>
-          <% @todo.each do |todo| %>
-            <tr>
-              <td>
-                <%= link_to edit_project_todo_path(todo.project_id, todo) do %>
-                  <%= todo.title %>
+          <div class="col-md-7 order-md-1">
+            <!-- Nav Pills -->
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <%= link_to projects_path, class: "nav-link" do %>
+                  <span class="u-label u-label--sm u-label--primary">
+                    Все проекты
+                  </span>
                 <% end %>
-              </td>
-
-              <td><%= link_to 'Удалить', project_todo_path(todo.project_id, todo), method: :delete %></td>
-            </tr>
-          <% end %>
-            </tbody>
-          </table>
-
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Дела</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Календарь</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">Прогресс</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-four-tab" data-toggle="pill" href="#pills-four" role="tab" aria-controls="pills-four" aria-selected="false">Файлы</a>
+              </li>
+            </ul>
+            <!-- End Nav Pills -->
+          </div>
         </div>
+        <!-- End Nav -->
+
+        <!-- Nav Content -->
+        <div class="tab-content" id="pills-tabContent">
+          <!-- Content One -->
+          <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
+            <!-- Transaction Table -->
+            <div class="table-responsive-md u-datatable">
+              <table class="js-datatable table table-borderless u-datatable__striped u-datatable__content">
+                <thead>
+                <tr class="text-uppercase font-size-14">
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Дело
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Исполнитель
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Приоритет
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Дедлайн
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Статус
+                    </div>
+                  </th>
+                  <th scope="col" class="font-weight-medium">
+                    <div class="d-flex justify-content-between align-items-center">
+                      Действия
+                    </div>
+                  </th>
+                </tr>
+                </thead>
+
+                <tbody class="font-size-14">
+                <% @todo.each do |todo| %>
+                  <tr>
+
+                    <td class="align-middle font-weight-normal">
+                      <%= link_to edit_project_todo_path(todo.project_id, todo) do %>
+                        <%= todo.title %>
+                      <% end %>
+                    </td>
+
+                    <td class="align-middle">
+                      <%= todo.user.name %>
+                    </td>
+
+                    <td class="align-middle text-danger">
+                      <span class="fa fa-arrow-up mr-1"></span>
+                      Highest
+                    </td>
+
+                    <td class="align-middle">12 Aug</td>
+
+                    <td class="align-middle">
+                      <span class="fa fa-circle text-primary small mr-1"></span>
+                      In progress
+                    </td>
+
+                    <td class="align-middle">
+                      <%= link_to 'Удалить', project_todo_path(todo.project_id, todo), method: :delete %>
+                    </td>
+
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+            <!-- End Transaction Table -->
+          </div>
+          <!-- End Content One -->
+
+          <!-- Content Two -->
+          <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
+            <div class="text-center py-4">
+              <div class="w-md-80 w-lg-50 text-center mx-auto">
+                <img class="w-50 mb-7" src="../../assets/svg/flat-icons/events-flat-concept-illustration.svg" alt="SVG Illustration">
+                <h4 class="h5 font-weight-normal">All due dates to tasks &amp; other notes in this project will appear here.</h4>
+              </div>
+            </div>
+          </div>
+          <!-- End Content Two -->
+
+          <!-- Content Three -->
+          <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">
+
+            <% if cost_project_todo != 0 %>
+
+            <div class="card">
+              <div class="card-body">
+                <p class="font-weight-light ml-2">Себистоимость <%= cost_project_todo %> руб.</p>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow= "75" aria-valuemin="0" aria-valuemax="100" style="width: <%= cost_project_todo_complete %>%"></div>
+                </div>
+              </div>
+            </div>
+            <% else %>
+            <div class="text-center py-4">
+              <div class="w-md-80 w-lg-50 text-center mx-auto">
+                <img class="w-50 mb-7" src="../../assets/svg/flat-icons/data-report-flat-concept-illustration.svg" alt="SVG Illustration">
+                <h4 class="h5 font-weight-normal">All progress, data analysis to tasks in this project will appear here.</h4>
+              </div>
+            </div>
+              <% end %>
+          </div>
+          <!-- End Content Three -->
+
+          <!-- Content Four -->
+          <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">
+            <div class="text-center py-4">
+              <div class="w-md-80 w-lg-50 text-center mx-auto">
+                <!-- File Attachment Input -->
+                <label class="file-attachment-input py-7" for="floorplanAttachmentInput">
+                  <span class="d-block mb-2">Upload floorplan</span>
+                  <small class="d-block text-muted">Maximum file size is 1MB</small>
+                  <input id="floorplanAttachmentInput" name="images-attachment" type="file" class="js-custom-file-attach file-attachment-input__label"
+                         data-result-text-target="#floorplanFileUploadText">
+                  <span id="floorplanFileUploadText"></span>
+                </label>
+                <!-- End File Attachment Input -->
+              </div>
+            </div>
+          </div>
+          <!-- End Content Four -->
+        </div>
+        <!-- End Nav Content -->
       </div>
     </div>
   </div>

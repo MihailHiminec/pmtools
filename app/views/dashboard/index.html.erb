@@ -2,7 +2,7 @@
   <div class="u-bg-light-blue-50">
     <div class="container u-space-3">
 
-
+      <%= flash_massages if show_layout_flash?%>
 
     <!-- Balances -->
     <div class="card-deck d-block d-lg-flex mb-6">
@@ -58,7 +58,7 @@
 
     <!-- Title -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h3 class="h6 mb-0">Ваши источники дохода</h3>
+      <h3 class="h6 mb-0">Источники дохода</h3>
       <%= link_to "Показать все", projects_path, class: 'u-link-muted' %>
     </div>
     <!-- End Title -->

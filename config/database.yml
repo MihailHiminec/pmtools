@@ -17,6 +17,7 @@ test:
 
 production:
   adapter: postgresql
+  url: postgres://acurxxhdwqieec:351e889a5cbd2ed0c0d1c03047c65c817042d6cea8996213ad64a47a1daa05ce@ec2-54-217-207-242.eu-west-1.compute.amazonaws.com:5432/d5bmk85lh106ah
   database: d5bmk85lh106ah
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000

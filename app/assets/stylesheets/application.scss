@@ -5,3 +5,49 @@
 label {
   font-size: 12px;
 }
+
+.u-no__focus:focus {
+  box-shadow: none!important;
+}
+.u-no__border-color {
+  border-color: transparent!important;
+}
+.u-no__image {
+  background-image: none!important;
+}
+.u-no__bordered>.input-group>.is-valid {
+  border-color: transparent!important;
+  box-shadow: none!important;
+  background-image: none!important;
+}
+.file-attachment-input__label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  cursor: inherit;
+  opacity: 0;
+}
+.file-attachment-input {
+  position: relative;
+  display: block;
+  background-color: #f8fafd;
+  border: 2px dashed #e7eaf3;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  padding: 4rem;
+  margin-bottom: 0;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #007bff!important;
+  background-color: transparent!important;
+  border-radius: 0!important;
+  border-bottom: 2px solid #007bff!important;
+}
+.calc-100vh-footer {
+  min-height: calc(100vh - 98px) !important;
+}

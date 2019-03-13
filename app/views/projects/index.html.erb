@@ -1,62 +1,89 @@
-<main id="content" role="main">
-  <div class="u-bg-light-blue-50">
+<main id="content" role="main" class="calc-100vh-footer">
+  <div id="SVGheroSectionBg" class="u-bg-light-blue-50  calc-100vh-footer  position-relative gradient-half-primary-v3">
     <div class="container u-space-3">
 
-      <%= form_with(model: @projects.new) do |f| %>
-        <div class="input-group mb-3">
-          <%= f.text_field  :title, class: 'form-control', placeholder: "Название проекта" %>
-          <div class="input-group-append">
-            <%= button_to "Добавить проект", @project, remote: true, class: "btn btn-primary" %>
+      <!-- Nav -->
+      <div class="row justify-content-between align-items mb-4">
+        <div class="order-md-2 mb-3 mb-md-0">
+          <div class="position-relative">
+              <ul class="nav">
+                <li class="nav-item">
+                <%= link_to new_project_path, class: "nav-link font-weight-bold" do %>
+                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-2">
+                      <span class="u-icon__inner">+</span>
+                    </span>
+                <% end %>
+
+
+                </li>
+              </ul>
           </div>
         </div>
-      <% end %>
 
-      <div class="card-deck d-block ">
-        <% @projects.each do |project| %>
-          <div class="card u-info-v2 mb-3">
-            <div class="card-body p-4">
-              <div class="media align-items-center">
+        <div class="col-md-7 order-md-1">
+          <%= form_for @search, as: :f, method: :get, url: projects_path, :html => {:class => 'input-group-sm u-form u-form--sm u-form--modern'} do |e| %>
+            <%= e.search_field :title, class: 'form-control u-form__input', placeholder: 'Поиск' %>
+            <%= link_to 'Дата создания', projects_path(f: @search.sort_params_for(:created_at)), class: @search.sort?(:created_at) && 'u-label u-label--xs u-label--primary active' %>
+            <%= e.select :user_id, User.all.map { |u| [u.name, u.id] }, { :include_blank => 'Все проекты' }, {class: 'js-select u-select', 'data-width' => 'fit', 'data-style' => 'bg-transparent text-secondary font-size-14 font-weight-normal pl-0', onchange: 'this.form.submit()'} %>
+          <% end %>
+        </div>
+      </div>
+      <!-- End Nav -->
+
+      <% if @search.results? %>
+        <div class="row card-deck d-block ">
+          <%  @search.results.each do |project| %>
+            <div class="card u-info-v2 mb-3">
+              <div class="card-body p-4">
+                <div class="media align-items-center">
+                  <a href="#" class="u-label u-label--xs text-warning u-label--white"><%= project.id %></a>
+
                   <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-3">
-                    <span class="u-icon__inner"><%= project.title[0,2].upcase %></span>
+                    <span class="u-icon__inner"> <%= project.title[0,2].upcase %></span>
                   </span>
-                <div class="media-body">
-                  <span class="text-dark"><%= link_to project.title, project %></span>
-                  <small class="d-block text-secondary"><%= project.description %></small>
-                </div>
-                <div class="media-body text-right">
-                  <!-- Settings Dropdown -->
-                  <div class="position-relative">
-                    <a id="referralsSettingsDropdownInvoker-<%= project.id %>" class="u-icon u-icon--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
-                       aria-controls="referralsSettingsDropdown-<%= project.id %>"
-                       aria-haspopup="true"
-                       aria-expanded="false"
-                       data-unfold-event="click"
-                       data-unfold-target="#referralsSettingsDropdown-<%= project.id %>"
-                       data-unfold-type="css-animation"
-                       data-unfold-duration="300"
-                       data-unfold-delay="300"
-                       data-unfold-hide-on-scroll="true"
-                       data-unfold-animation-in="slideInUp"
-                       data-unfold-animation-out="fadeOut">
-                      <span class="fa fa-ellipsis-h u-icon__inner"></span>
-                    </a>
-
-                    <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
-                      <%= link_to 'Удалить', project, method: :delete,
-                                  data: { confirm: "You sure?" }, class: "u-list__link" %>
-                      <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
-                    </div>
+                  <div class="media-body">
+                    <span class="text-dark"><%= link_to project.title, project %></span>
+                    <small class="d-block text-secondary"><%= project.description %></small>
                   </div>
-                  <!-- End Settings Dropdown -->
-                  <span class="text-primary ml-3">
+                  <div class="media-body text-right">
+                    <!-- Settings Dropdown -->
+                    <div class="position-relative">
+                      <a id="referralsSettingsDropdownInvoker-<%= project.id %>" class="u-icon u-icon--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
+                         aria-controls="referralsSettingsDropdown-<%= project.id %>"
+                         aria-haspopup="true"
+                         aria-expanded="false"
+                         data-unfold-event="click"
+                         data-unfold-target="#referralsSettingsDropdown-<%= project.id %>"
+                         data-unfold-type="css-animation"
+                         data-unfold-duration="300"
+                         data-unfold-delay="300"
+                         data-unfold-hide-on-scroll="true"
+                         data-unfold-animation-in="slideInUp"
+                         data-unfold-animation-out="fadeOut">
+                        <span class="fa fa-ellipsis-h u-icon__inner"></span>
+                      </a>
+
+                      <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
+                        <%= link_to 'Удалить', project, method: :delete,
+                                    data: { confirm: "You sure?" }, class: "u-list__link" %>
+                        <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
+                      </div>
+                    </div>
+                    <!-- End Settings Dropdown -->
+                    <span class="text-primary ml-3">
                       ₽<%= project.budget %>
                     </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+        <% else %>
+        <div class="alert alert-primary alert-dismissible fade show pt-8 mt-8 mb-8 pb-8" role="alert">
+          Ни какой акуна мататы, одна бананза!
+        </div>
+      <% end %>
 
     </div>
   </div>
