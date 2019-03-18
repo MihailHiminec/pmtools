@@ -1,0 +1,62 @@
+<header  id="header" class="u-header u-header--abs-top-md u-header--bg-transparent u-header--show-hide-md u-scrolled js-header-fix-moment">
+  <div class="u-header__section">
+    <div class="container">
+      <nav class="navbar navbar-expand-md u-header__navbar">
+        <%= link_to root_path, class: 'navbar-brand u-header__navbar-brand u-header__navbar-brand-top-space' do %>
+          <img src="/assets/svg/logos/logo.svg" alt="Logo" style="width: 36px">
+        <% end %>
+
+        <button type="button" class="navbar-toggler btn u-hamburger"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+                aria-controls="navBarBasic"
+                data-toggle="collapse"
+                data-target="#navBarBasic">
+            <span id="hamburgerTrigger" class="u-hamburger__box">
+                <span class="u-hamburger__inner"></span>
+              </span>
+        </button>
+
+        <div id="navBarBasic" class="collapse navbar-collapse py-0">
+          <ul class="navbar-nav u-header__navbar-nav ml-lg-auto">
+            <% if !user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Создать аккаунт", new_account_path, class: "mt-3 mb-3 btn btn-sm btn-primary u-btn-primary transition-3d-hover" %>
+              </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "Проекты", projects_path, class: 'nav-link u-header__nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Пользователи", users_path, class: 'nav-link u-header__nav-link' %>
+              </li>
+              <li class="nav-item">
+                <a id="sidebarAccountInvoker" class="btn btn-xs u-btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="javascript:;" role="button"
+                   aria-controls="sidebarAccount"
+                   aria-haspopup="true"
+                   aria-expanded="false"
+                   data-unfold-event="click"
+                   data-unfold-hide-on-scroll="false"
+                   data-unfold-target="#sidebarAccount"
+                   data-unfold-type="css-animation"
+                   data-unfold-animation-in="fadeInRight"
+                   data-unfold-animation-out="fadeOutRight"
+                   data-unfold-duration="500">
+                    <span class="position-relative">
+                      <span class="u-sidebar--account__toggle-text"><%= current_user.name %></span>
+                      <span class="u-icon u-icon-primary--air u-icon--xs rounded-circle mr-0">
+                        <span class="u-icon__inner"><%= current_user.name[0,2].upcase %></span>
+                      </span>
+                      <span class="u-badge u-badge-success u-badge-pos rounded-circle">3</span>
+                    </span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+      </nav>
+    </div>
+  </div>
+</header>

@@ -13,10 +13,10 @@
 
             <!-- Input -->
             <%= simple_form_for(User.new, url: user_invitation_path,
-                                html: { class: 'form-inline js-focus-state input-group input-group-sm u-form' }) do |f| %>
+                                html: { class: 'form-inline js-focus-state input-group input-group u-form' }) do |f| %>
               <%= f.input :email, placeholder: 'Email', label: false %>
               <div class="input-group-append ">
-                <%= f.button :submit, 'Отправить инвайт', class: 'btn-success' %>
+                <%= f.button :submit, 'Инвайт', class: 'btn-success' %>
               </div>
             <% end %>
             <!-- End Input -->
@@ -118,6 +118,7 @@
       <div class="card-deck d-block">
         <!-- Friends List -->
         <% @users.each do |user| %>
+          <%= link_to(user) do %>
           <div class="card u-info-v2 mb-3">
             <div class="card-body p-3">
               <div class="media">
@@ -129,10 +130,12 @@
                   <%= user.email %>
                   </h4>
                   <span><%= user_status(user) %></span>
+                  <span><%= user_role(user) %></span>
                 </div>
               </div>
             </div>
           </div>
+          <% end %>
         <% end %>
         <!-- End Friends List -->
       </div>

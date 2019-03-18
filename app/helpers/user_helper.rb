@@ -6,4 +6,10 @@ module UserHelper
       content_tag(:span, 'Приглашение отправлено ', class: 'badge badge-light')
     end
   end
+  def user_role(user)
+    if current_account.owner == user || user.admin?
+      content_tag(:span, 'Админ', class: 'badge badge-danger')
+    else
+    end
+  end
 end

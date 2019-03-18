@@ -1,4 +1,4 @@
-<main id="content" role="main">
+<main id="content" role="main" class="calc-100vh-footer">
 
   <div class="u-gradient-half-primary-body-v1">
     <div class="container u-space-2-top pb-3">
@@ -14,13 +14,13 @@
             <div class="u-lg-avatar position-relative mb-sm-0">
 
               <span class="u-icon u-icon-light--air u-icon--lg rounded-circle">
-                <span class="u-icon__inner text-white"><%= current_user.name[0,1].upcase %></span>
+                <span class="u-icon__inner text-white"><%= @user.name[0,1].upcase %></span>
               </span>
 
             </div>
             <div class="media-body">
-              <h1 class="h3 font-weight-medium mb-1 text-white">Привет, <%= current_user.name %>!</h1>
-              <span class="d-block text-white"><%= current_user.email %></span>
+              <h1 class="h3 font-weight-medium mb-1 text-white"><%= @user.name %></h1>
+              <span class="d-block text-white"><%= @user.email %></span>
             </div>
           </div>
           <!-- End User Info -->
@@ -57,10 +57,10 @@
             <!-- Nav Pills -->
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
               <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Профиль</a>
+                <a class="nav-link u-tab__nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Обзор</a>
               </li>
               <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Календарь</a>
+                <a class="nav-link u-tab__nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Проекты <span class=" u-badge u-badge-primary rounded-circle"><%= @user.projects.count %></span></a>
               </li>
               <li class="nav-item u-tab__nav-item">
                 <a class="nav-link u-tab__nav-link" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">Прогресс</a>
@@ -79,9 +79,15 @@
       <div class="tab-content" id="pills-tabContent">
         <!-- Content One -->
         <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
+
+        </div>
+        <!-- End Content One -->
+
+        <!-- Content Two -->
+        <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
           <!-- Projects -->
           <div class="card-deck d-block ">
-            <% current_user.projects.each do |project| %>
+            <% @user.projects.each do |project| %>
               <div class="card u-info-v2 mb-3">
                 <div class="card-body p-4">
                   <div class="media align-items-center">
@@ -127,17 +133,6 @@
             <% end %>
           </div>
           <!-- End Projects -->
-        </div>
-        <!-- End Content One -->
-
-        <!-- Content Two -->
-        <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
-          <div class="text-center py-4">
-            <div class="w-md-80 w-lg-50 text-center mx-auto">
-              <img class="w-100 mb-7" src="../assets/svg/flat-icons/events-flat-concept-illustration.svg" alt="SVG Illustration">
-              <h4 class="h5 font-weight-normal">Все сроки выполнения задач и другие заметки появятся здесь.</h4>
-            </div>
-          </div>
         </div>
         <!-- End Content Two -->
 
