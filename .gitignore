@@ -6,7 +6,9 @@
 
 # Ignore bundler config.
 /.bundle
-/.idea
+.idea/*
+
+/shared/*
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -25,7 +27,7 @@
 /node_modules
 /yarn-error.log
 
-/public/assets
+# /public/assets
 .byebug_history
 
 # Ignore master key for decrypting credentials and more.
