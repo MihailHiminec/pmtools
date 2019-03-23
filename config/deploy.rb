@@ -106,6 +106,7 @@ namespace :application do
 end
 
 namespace :deploy do
+  
 # task :updated do
 #   sudo :ln, "-fs #{shared_path}/config/database.conf #{release_path}/config/database.conf"
 # end
@@ -115,8 +116,6 @@ namespace :deploy do
       run "ln -fs #{shared_path}/config/database.conf #{release_path}/config/database.conf"
     end
   end
-
-  
   after :finishing, 'application:stop'
   after :finishing, 'application:start'
   after :finishing, :cleanup
