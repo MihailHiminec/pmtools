@@ -116,6 +116,7 @@ namespace :deploy do
     end
   end
 
+  
   after :finishing, 'application:stop'
   after :finishing, 'application:start'
   after :finishing, :cleanup
