@@ -61,8 +61,4 @@
 #   }
 server '213.226.125.107',
        user: 'deploy',
-       roles: %w{web app},
-       ssh_options: {
-         keys: %w(/home/user_name/.ssh/id_rsa),
-         forward_agent: false
-       }
+       roles: %w{web app}

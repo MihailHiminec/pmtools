@@ -16,6 +16,8 @@ set :log_level, :info
 set :linked_dirs, %w{public/upload}
 
 set :linked_files, %w{config/credentials.yml.enc config/database.yml}
+# set :linked_files, fetch(:linked_files, [])
+#                        .push('config/database.yml', 'config/credentials.yml.enc')
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -104,6 +106,16 @@ namespace :application do
 end
 
 namespace :deploy do
+# task :updated do
+#   sudo :ln, "-fs #{shared_path}/config/database.conf #{release_path}/config/database.conf"
+# end
+
+  task :setup_config do
+    on roles :all do
+      run "ln -fs #{shared_path}/config/database.conf #{release_path}/config/database.conf"
+    end
+  end
+
   after :finishing, 'application:stop'
   after :finishing, 'application:start'
   after :finishing, :cleanup
