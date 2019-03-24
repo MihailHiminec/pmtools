@@ -61,4 +61,4 @@
 #   }
 server '213.226.125.107',
        user: 'deploy',
-       roles: %w{web app}
+       roles: %w{web app db}
