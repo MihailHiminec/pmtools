@@ -41,6 +41,7 @@ group :development do
   gem 'capistrano-rvm', '~> 0.1.2'
   gem 'capistrano-bundler', '~> 1.5'
   gem 'capistrano-rails', '~> 1.4'
+  gem 'rails_real_favicon'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
