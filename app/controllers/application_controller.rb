@@ -32,7 +32,7 @@ private
 
   def set_mailer_host
     subdomain = current_account ? "#{current_account.subdomain}." : ""
-                    ActionMailer::Base.default_url_options[:host] = "#{subdomain}lvh.me:3000"
+                    ActionMailer::Base.default_url_options[:host] = "#{subdomain}pm-tool.ru"
   end
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path

@@ -1,0 +1,44 @@
+<%  @search.results.each do |project| %>
+  <div id="project-<%= project.id %>" class="card u-info-v2 mb-3">
+  <div class="card-body p-4">
+    <div class="media align-items-center">
+      <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-3">
+                    <span class="u-icon__inner"> <%= project.title[0,2].upcase %></span>
+                  </span>
+      <div class="media-body">
+        <span class="text-dark"><%= link_to project.title, project %></span>
+        <small class="d-block text-secondary"><%= project.description %></small>
+      </div>
+      <div class="media-body text-right">
+        <!-- Settings Dropdown -->
+        <div class="position-relative">
+          <a id="referralsSettingsDropdownInvoker-<%= project.id %>" class="u-icon u-icon--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
+             aria-controls="referralsSettingsDropdown-<%= project.id %>"
+             aria-haspopup="true"
+             aria-expanded="false"
+             data-unfold-event="click"
+             data-unfold-target="#referralsSettingsDropdown-<%= project.id %>"
+             data-unfold-type="css-animation"
+             data-unfold-duration="300"
+             data-unfold-delay="300"
+             data-unfold-hide-on-scroll="true"
+             data-unfold-animation-in="slideInUp"
+             data-unfold-animation-out="fadeOut">
+            <span class="fa fa-ellipsis-h u-icon__inner"></span>
+          </a>
+
+          <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
+            <%= link_to 'Удалить', project, method: :delete,
+                        data: { confirm: "You sure?" }, class: "u-list__link" %>
+            <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
+          </div>
+        </div>
+        <!-- End Settings Dropdown -->
+        <span class="text-primary ml-3">
+                      ₽<%= project.budget %>
+                    </span>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
