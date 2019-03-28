@@ -1,12 +1,12 @@
 <head>
   <title>Fin tracker</title>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tag %>
   <%= csp_meta_tag %>
 
   <%= render 'application/favicon' %>
 
   <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <!-- Google Fonts -->
   <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
 

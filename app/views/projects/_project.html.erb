@@ -28,8 +28,7 @@
           </a>
 
           <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
-            <%= link_to 'Удалить', project, method: :delete,
-                        data: { confirm: "You sure?" }, class: "u-list__link" %>
+            <%= link_to 'Удалить', project_path(project), method: :delete, class: "u-list__link" %>
             <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
           </div>
         </div>
