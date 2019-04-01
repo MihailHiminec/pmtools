@@ -23,6 +23,7 @@
 
           <div class="js-scrollbar u-sidebar__body">
             <header class="d-flex align-items-center u-sidebar--account__holder mt-3">
+              <%= link_to user_path(current_user.id), class: 'd-flex' do %>
               <div class="position-relative">
                   <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-0">
                     <span class="u-icon__inner"><%= current_user.name[0,2].upcase %></span>
@@ -36,9 +37,9 @@
                     <span class="badge badge-success ml-1">Admin</span>
                   <% end %>
                 </strong>
-                <span class="u-sidebar--account__holder-text">Developer</span>
+                <span class="u-sidebar--account__holder-text"><%= current_user.email %></span>
               </div>
-
+              <% end %>
               <div class="btn-group position-relative ml-auto mb-auto">
                 <a id="sidebar-account-settings-invoker" class="btn btn-xs u-btn--icon u-btn-text-secondary rounded" href="javascript:;" role="button"
                    aria-controls="sidebar-account-settings"

@@ -1,14 +1,20 @@
 #flash_notice {
   @extend .alert !optional;
   @extend .alert-success !optional;
+  margin-bottom: 0rem;
+  border-radius: 0rem;
 }
 #flash_error, #flash_alert {
   @extend .alert !optional;
   @extend .alert-danger !optional;
+  margin-bottom: 0rem;
+  border-radius: 0rem;
 }
 #flash_warning {
   @extend .alert !optional;
   @extend .alert-warning !optional;
+  margin-bottom: 0rem;
+  border-radius: 0rem;
 }
 
 html {

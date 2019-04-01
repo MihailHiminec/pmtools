@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_14_192717) do
+ActiveRecord::Schema.define(version: 2019_03_31_110900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 2019_03_14_192717) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.string "invoice_number"
+    t.string "invoice_discription"
+    t.integer "user_id"
+    t.boolean "is_completed", default: false
+    t.bigint "project_id"
+    t.integer "cost"
+    t.datetime "plan_date_payment"
+    t.datetime "rel_date_payment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_payments_on_project_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -44,6 +58,7 @@ ActiveRecord::Schema.define(version: 2019_03_14_192717) do
     t.integer "cost", default: 0
     t.integer "time_to_complete", default: 0
     t.integer "time_spent", default: 0
+    t.integer "priority", default: 0
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
@@ -73,4 +88,5 @@ ActiveRecord::Schema.define(version: 2019_03_14_192717) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "payments", "projects"
 end

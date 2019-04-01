@@ -1,55 +1,77 @@
 class ProjectsController < ApplicationController
-  before_action :current_user, only: [:destroy, :show, :edit, :update]
+  before_action :current_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+  # GET /projects
+  # GET /projects.json
   def index
     @projects = Project.order(id: :desc).all
     @search = ProjectSearch.new filters: params[:f]
+    @payments = Payment.order(id: :desc).all
   end
 
+  # GET /projects/1
+  # GET /projects/1.json
+  def show
+    @todo = @project.todos.order(id: :desc).all
+    @payment = @project.payments.order(id: :desc).all
+  end
+
+  # GET /projects/new
   def new
     @project = Project.new
   end
 
-  def show
-    @project = Project.find(params[:id])
-    @todo = @project.todos.order(id: :desc).all
-  end
-
+  # GET /projects/1/edit
   def edit
-    @project = Project.find(params[:id])
   end
 
-  def update
-    @project = Project.find(params[:id])
-    if @project.update_attributes(project_params)
-      redirect_to project_path,
-                  notice: 'Проект обновлен!'
-    else
-      render 'edit'
-    end
-  end
-
+  # POST /projects
+  # POST /projects.json
   def create
     @project = current_user.projects.new(project_params)
-    if @project.save
-      redirect_to subdomain_root_url,
-                  notice: 'Проект добавлен!'
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to @project, notice: 'Проект добавлен!' }
+        format.json { render :show, status: :created, location: @project }
+      else
+        format.html { render :new }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
 
+  # PATCH/PUT /projects/1
+  # PATCH/PUT /projects/1.json
+  def update
+    respond_to do |format|
+      if @project.update(project_params)
+        format.html { redirect_to @project, notice: 'Проект обновлен!' }
+        format.json { render :show, status: :ok, location: @project }
+      else
+        format.html { render :edit }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /projects/1
+  # DELETE /projects/1.json
   def destroy
-    projects = Project.find(params[:id])
-    if projects.destroy
-    redirect_to projects_path,
-                notice: 'Проект удален!'
-    else
-      render action: 'new'
+    @projects.destroy
+    respond_to do |format|
+      format.html { redirect_to projects_path, notice: 'Проект удален!' }
+      format.json { head :no_content }
     end
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
   def project_params
     params.require(:project).permit([ :title, :description, :budget, :cost_per_hour ])
   end
