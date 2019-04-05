@@ -4,6 +4,11 @@
       <div class="bg-white pl-4 pr-4 pt-3 pb-3">
         <div class="row align-items-center">
           <div class="col-2 u-ver-divider">
+            <span class="font-weight-medium font-size-14">
+              <%= link_to "#{ @project.title }", edit_project_url, method: :get , class: 'u-list__link' %>
+            </span>
+          </div>
+          <div class="col-2 u-ver-divider">
             <label class="d-block small text-muted mb-0">План. бюджет:</label>
             <span class="font-weight-medium font-size-13"><%= @project.budget %> руб.</span>
           </div>
@@ -19,12 +24,7 @@
             <label class="d-block small text-muted mb-0">Ближайшая оплата:</label>
             <span class="font-weight-medium font-size-13"><%= the_nearest_pay %> / <%= the_nearest_pay_summ %> руб.</span>
           </div>
-      </div>
-      </div>
-      <div class="bg-white p-4 mt-1">
-        <!-- Nav -->
-        <div class="row justify-content-between align-items mb-4">
-          <div class="order-md-2 mb-3 mb-md-0">
+          <div class="col-2">
             <div class="position-relative">
               <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
                  aria-controls="dropdownBasicExample"
@@ -45,14 +45,18 @@
               <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
                 <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
                 <%= link_to 'Добавить счет', new_project_payment_path(@project), class: "u-list__link" %>
-                <%= link_to 'Изменить проект', edit_project_url, method: :get , class: 'u-list__link' %>
                 <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
                 <hr>
-                <a class="u-list__link" href="#">Удалить проект</a>
+                <%= link_to 'Изменить', edit_project_url, method: :get , class: 'u-list__link' %>
+                <a class="u-list__link" href="#">Удалить</a>
               </div>
             </div>
           </div>
-
+      </div>
+      </div>
+      <div class="bg-white p-4 mt-1">
+        <!-- Nav -->
+        <div class="row justify-content-between align-items mb-4">
           <div class="col-md-7 order-md-1">
             <!-- Nav Pills -->
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
@@ -152,7 +156,7 @@
                       </td>
                     <% end %>
 
-                    <td class="align-middle">12 Aug</td>
+                    <td class="align-middle"><%= Russian::strftime(todo.deadline,'%e %b %Y') %></td>
 
                     <td class="align-middle">
                       <span class="fa fa-circle text-primary small mr-1"></span>

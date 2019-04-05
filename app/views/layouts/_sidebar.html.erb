@@ -32,7 +32,7 @@
               </div>
               <div class="ml-3">
                 <strong>
-                  <%= current_user.name %>
+                  <%= current_user.name.humanize %>
                   <% if current_user.admin? %>
                     <span class="badge badge-success ml-1">Admin</span>
                   <% end %>

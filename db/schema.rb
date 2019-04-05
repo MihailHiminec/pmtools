@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_31_110900) do
+ActiveRecord::Schema.define(version: 2019_04_04_151314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_03_31_110900) do
     t.integer "time_to_complete", default: 0
     t.integer "time_spent", default: 0
     t.integer "priority", default: 0
+    t.date "deadline"
     t.index ["project_id"], name: "index_todos_on_project_id"
   end
 

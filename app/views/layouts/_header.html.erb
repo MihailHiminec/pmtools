@@ -4,7 +4,9 @@
       <nav class="navbar navbar-expand-md u-header__navbar">
         <%= link_to root_path, class: 'navbar-brand u-header__navbar-brand u-header__navbar-brand-top-space' do %>
           <img src="/include/svg/logos/logo.svg" alt="Logo" style="width: 36px">
+          pm tool
         <% end %>
+        <%= Russian::strftime(Time.now, '%e %b %H:%M' ) %>
 
         <button type="button" class="navbar-toggler btn u-hamburger"
                 aria-label="Toggle navigation"

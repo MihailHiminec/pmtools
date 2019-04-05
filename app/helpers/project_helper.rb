@@ -15,7 +15,8 @@ module ProjectHelper
     a = 78
   end
   def the_nearest_pay
-    @the_nearest_pay = @payment[0].try(:plan_date_payment).try(:strftime, ("%d %b %Y"))
+    @the_nearest_pay = Russian::strftime(@payment[0].try(:plan_date_payment), "%d %b %y")
+    # Russian::strftime(Time.now, '%e %b %H:%M' )
     # payment.try(:rel_date_payment).try(:strftime, ("%d %B %Y"))
   end
   def the_nearest_pay_summ

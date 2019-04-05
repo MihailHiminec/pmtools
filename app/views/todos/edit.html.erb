@@ -8,9 +8,28 @@
               <%= link_to 'Назад', project_path(@todo.project_id), class: "nav-link u-header__nav-link" %>
             </div>
 
-            <div class="col-10">
+            <div class="col-10 justify-content-xl-end">
+              <div class="btn-group-toggle d-inline-block">
+
+                <% if @todo.isCompleted? %>
+                    <label class="btn btn-xs btn-outline-primary">
+                      <!-- Button -->
+                      <%= f.input_field :isCompleted, as: :boolean, checked_value: 1, unchecked_value: 0, class: '' %> Начать выполнение
+                      <!-- End Button -->
+                    </label>
+                    <% else @todo.isCompleted = 0 %>
+                    <label class="btn u-btn-text-warning btn-outline-warning btn-xs">
+                      <!-- Button -->
+                      <%= f.input_field :isCompleted, as: :boolean, checked_value: 1, unchecked_value: 0, class: '' %> Завершить
+                      <!-- End Button -->
+                    </label>
+                  <% end %>
+
+
+
+              </div>
               <!-- Button -->
-              <%= f.button :submit, class: 'btn-success btn-xs  float-right' %>
+              <%= f.button :submit,'Сохранить',  class: 'btn-success btn-xs' %>
               <!-- End Button -->
             </div>
           </div>
@@ -21,7 +40,14 @@
             <div class="col-md-3 pr-1">
               <div class="bg-white">
                 <div class="card-body">
-                    <%= f.input :cost, label: 'Стоимость, руб.' do %>
+
+                  <%= f.input :deadline, label: 'Крайний срок' do %>
+                    <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                      <%= f.input_field :deadline, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                    </div>
+                  <% end %>
+
+                    <%= f.input :cost, label: 'Стоимость часа, руб.' do %>
                       <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
                         <%= f.input_field :cost, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image u-disable' %>
                       </div>
@@ -36,7 +62,6 @@
                       <%= f.input_field :time_to_complete, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
                     </div>
                   <% end %>
-
 
                   <div class="form-group u-no__bordered">
                     <label class="form-control-label">Приоритет</label>
@@ -75,5 +100,8 @@
           </div>
       </div>
     <% end %>
+    <br/>
+    <div id='time_div'>
+    </div>
   </div>
 </main>
