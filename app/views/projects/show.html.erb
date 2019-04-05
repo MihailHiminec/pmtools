@@ -156,7 +156,13 @@
                       </td>
                     <% end %>
 
-                    <td class="align-middle"><%= Russian::strftime(todo.deadline,'%e %b %Y') %></td>
+                    <td class="align-middle">
+                      <% if todo.deadline.blank?  %>
+                          Без крайнего срока
+                        <% else %>
+                          <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
+                      <% end %>
+                    </td>
 
                     <td class="align-middle">
                       <span class="fa fa-circle text-primary small mr-1"></span>
