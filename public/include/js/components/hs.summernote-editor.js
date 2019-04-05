@@ -15,7 +15,7 @@
     * @var Object _baseConfig
     */
     _baseConfig: {
-      height: 100,
+      height: 200,
       placeholder: ''
     },
 
