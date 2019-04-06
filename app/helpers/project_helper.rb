@@ -1,10 +1,10 @@
 module ProjectHelper
   def cost_project_todo
-    @cost_hour = @todo.sum(:cost) * @todo.sum(:time_spent)
+    @project.cost_per_hour *  @todo.sum(:time_spent)
   end
 
   def rel_cost
-    @todo.sum(:time_spent) * @project.cost_per_hour
+    @project.cost_per_hour * @todo.sum(:time_to_complete)
   end
 
   def time_to_complete_summ
