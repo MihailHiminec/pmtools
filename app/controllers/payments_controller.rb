@@ -60,6 +60,6 @@ class PaymentsController < ApplicationController
     @set_project = Project.find(params[:project_id])
   end
   def payment_params
-    params.require(:payment).permit([ :invoice_number, :invoice_discription, :user_id, :project_id, :is_completed, :cost, :plan_date_payment, :rel_date_payment ])
+    params.require(:payment).permit([ :invoice_number, :invoice_discription, :user_id, :contractor_id, :project_id, :is_completed, :cost, :plan_date_payment, :rel_date_payment ])
   end
 end

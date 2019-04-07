@@ -3,6 +3,7 @@ class Payment < ApplicationRecord
 
   belongs_to :project
   belongs_to :user
+  belongs_to :contractor
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

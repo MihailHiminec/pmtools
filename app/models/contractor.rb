@@ -3,5 +3,6 @@ class Contractor < ApplicationRecord
   validates :inn, presence: true, length: { maximum: 10 }
 
   has_many :projects
+  has_many :payments
   belongs_to :user
 end
