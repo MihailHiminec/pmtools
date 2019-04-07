@@ -1,0 +1,17 @@
+<ul class="list-group">
+  <%  @contractors.each do |contractor| %>
+      <%= link_to contractor, class: 'list-group-item list-group-item-action flex-column align-items-start' do %>
+
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= contractor.title %></h5>
+        <small class="text-muted">ИНН <%= contractor.inn %></small>
+      </div>
+        <% if !contractor.kpp.blank? %>
+          <p class="mb-1"><%= contractor.kpp %></p>
+        <% end %>
+        <% if !contractor.ogrn.blank? %>
+          <small class="text-muted"><%= contractor.user.name %></small>
+        <% end %>
+      <% end %>
+  <% end %>
+</ul>
