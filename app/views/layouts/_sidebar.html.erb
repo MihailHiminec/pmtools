@@ -68,35 +68,19 @@
             <div class="u-sidebar__content--account">
               <ul class="list-unstyled u-sidebar--account__list">
                 <li class="u-sidebar--account__list-item">
-                  <a class="u-sidebar--account__list-link" href="../pages/reviews.html">
-                    <span class="fa fa-comments u-sidebar--account__list-icon mr-2"></span>
-                    Обсуждения
-                  </a>
-                </li>
-              </ul>
-
-              <div class="u-sidebar--account__list-divider"></div>
-
-              <ul class="list-unstyled u-sidebar--account__list">
-                <li class="u-sidebar--account__list-item">
                   <%= link_to users_path, class: 'u-sidebar--account__list-link' do %>
                     <span class="fa fa-users u-sidebar--account__list-icon mr-2"></span>
                     Пользователи
                   <% end %>
                 </li>
                 <li class="u-sidebar--account__list-item">
-                  <a class="u-sidebar--account__list-link" href="../pages/profile.html">
-                    <span class="fa fa-tasks u-sidebar--account__list-icon mr-2"></span>
-                    Мои дела
-                  </a>
-                </li>
-                <li class="u-sidebar--account__list-item">
-                  <a class="u-sidebar--account__list-link" href="../pages/user-contacts.html">
-                    <span class="fa fa-calendar u-sidebar--account__list-icon mr-2"></span>
-                    Календарь
-                  </a>
+                  <%= link_to contractors_path, class: 'u-sidebar--account__list-link' do %>
+                    <span class="fa fa-building u-sidebar--account__list-icon mr-2"></span>
+                    Компании
+                  <% end %>
                 </li>
               </ul>
+              <div class="u-sidebar--account__list-divider"></div>
             </div>
           </div>
         </div>

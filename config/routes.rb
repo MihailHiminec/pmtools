@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     root 'dashboard#index', as: :subdomain_root
     devise_for :users
     resources :users, only: [ :index, :show, :edit ]
-    resources :contractor, only: [:index, :new, :create, :destroy, :show, :edit, :update]
+    resources :contractors, only: [:index, :new, :create, :destroy, :show, :edit, :update]
     resources :projects, only: [:index, :new, :create, :destroy, :show, :edit, :update] do
       resources :todos
       resources :payments

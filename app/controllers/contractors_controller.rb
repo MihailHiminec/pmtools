@@ -1,9 +1,9 @@
-class ContractorController < ApplicationController
+class ContractorsController < ApplicationController
   before_action :current_user, only: [:show, :edit, :update, :destroy, :index]
   before_action :set_contractor, only: [:show, :edit, :update, :destroy]
 
-  # GET /contractor
-  # GET /contractor.json
+  # GET /contractors
+  # GET /contractors.json
   def index
     @contractors = Contractor.all
   end
@@ -11,6 +11,7 @@ class ContractorController < ApplicationController
   # GET /contractor/1
   # GET /contractor/1.json
   def show
+    @contractor = Contractor.find(params[:id])
   end
 
   # GET /contractor/new
