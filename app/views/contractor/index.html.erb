@@ -1,0 +1,35 @@
+<main id="content" role="main" class="calc-100vh-footer">
+  <div class="u-bg-light-blue-50  calc-100vh-footer">
+    <div class="container pt-1 u-space-1-bottom u-space-bottom-0--lg">
+      <!-- Nav -->
+      <div class="row justify-content-between align-items mb-4 u-space-1-top">
+        <div class="order-md-2 mb-3 mb-md-0">
+          <div class="position-relative">
+              <ul class="nav">
+                <li class="nav-item">
+                <%= link_to new_contractor_path, class: "nav-link font-weight-bold" do %>
+                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-2">
+                      <span class="u-icon__inner">+</span>
+                    </span>
+                <% end %>
+
+
+                </li>
+              </ul>
+          </div>
+        </div>
+
+      </div>
+      <!-- End Nav -->
+      <% if !@contractors.blank? %>
+        <div class="row card-deck d-block ">
+            <%= render 'contractor/contractor' %>
+        </div>
+        <% else %>
+        <div class="alert alert-primary alert-dismissible fade show pt-8 mt-8 mb-8 pb-8" role="alert">
+          К сожалению контрагентов не найдено
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,43 @@
+<main id="content" role="main" class="calc-100vh-footer">
+  <div class="u-bg-light-blue-50 calc-100vh-footer">
+    <div class="container pt-1 u-space-1-bottom">
+      <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+        <div class="row align-items-center">
+          <div class="col-2 u-ver-divider">
+            <span class="font-weight-medium font-size-14">
+              <%= link_to "#{ @contractor.title }", edit_contractor_url, method: :get , class: 'u-list__link' %>
+            </span>
+          </div>
+          <div class="col-2">
+            <div class="position-relative">
+              <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3 float-right" href="javascript:;" role="button"
+                 aria-controls="dropdownBasicExample"
+                 aria-haspopup="true"
+                 aria-expanded="true"
+                 data-unfold-event="hover"
+                 data-unfold-target="#dropdownBasicExample"
+                 data-unfold-type="css-animation"
+                 data-unfold-duration="300"
+                 data-unfold-delay="300"
+                 data-unfold-hide-on-scroll="true"
+                 data-unfold-animation-in="slideInUp"
+                 data-unfold-animation-out="fadeOut">
+                Выполнить
+                <span class="ml-2 fa fa-ellipsis-v"></span>
+              </a>
+
+              <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
+                <hr>
+                <%= link_to 'Изменить', edit_contractor_url, method: :get , class: 'u-list__link' %>
+                <a class="u-list__link" href="#">Удалить</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white p-4 mt-1">
+        wedwed
+      </div>
+    </div>
+  </div>
+</main>

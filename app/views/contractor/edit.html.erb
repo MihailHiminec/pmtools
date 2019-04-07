@@ -5,36 +5,32 @@
       <h4 class="mt-3 ml-3">Редактировать проект</h4>
       <div class="card">
         <div class="card-body">
-          <%= simple_form_for @project do |f| %>
-            <%= f.input :title, label: 'Название проекта' do %>
+          <%= simple_form_for @contractor do |f| %>
+            <%= f.input :title, label: 'Наименование организации' do %>
               <div class="input-group">
                 <%= f.input_field :title, class: 'form-control' %>
               </div>
             <% end %>
-            <%= f.input :description, label: 'Содержание проекта' do %>
+            <%= f.input :address, label: 'Адрес' do %>
               <div class="input-group">
-                <%= f.text_area :description, class: 'form-control' %>
+                <%= f.input_field :address, class: 'form-control' %>
               </div>
             <% end %>
-            <%= f.input :budget, label: 'Бюджет проекта' do %>
+            <%= f.input :kpp, label: 'КПП' do %>
               <div class="input-group">
-                <%= f.input_field :budget, class: 'form-control' %>
+                <%= f.input_field :kpp, class: 'form-control' %>
               </div>
             <% end %>
-            <%= f.input :cost_per_hour, label: 'Стоимость часа' do %>
+            <%= f.input :inn, label: 'ИНН' do %>
               <div class="input-group">
-                <%= f.input_field :cost_per_hour, class: 'form-control' %>
+                <%= f.input_field :inn, class: 'form-control' %>
               </div>
             <% end %>
-            <div class="form-group u-no__bordered">
-              <label class="form-control-label">Компания</label>
-              <%= f.association :contractor, label_method: :title, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
-            </div>
+            <br>
             <div class="form-group u-no__bordered">
               <label class="form-control-label">Ответственный</label>
               <%= f.association :user, label_method: :email, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
             </div>
-            <br>
 
             <%= f.button :submit, class: 'btn-primary btn-sm' %>
           <% end %>

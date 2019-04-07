@@ -4,4 +4,5 @@ class User < ApplicationRecord
   validates :name, presence: true
   has_many :projects
   has_many :payments
+  has_many :contractors
 end
