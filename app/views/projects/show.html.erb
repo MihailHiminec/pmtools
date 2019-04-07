@@ -307,9 +307,10 @@
                           <% end %>
                         </td>
                         <td class="align-middle">
-                          <%= link_to user_path(payment.user_id) do %>
-                            <%= payment.user.name %>
-                          <% end %>
+                          <% if payment.contractor.blank? %>
+                            <% else %>
+                            <%= payment.contractor.title %>
+                            <% end %>
                         </td>
 
                         <td class="align-middle">
