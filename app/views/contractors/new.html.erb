@@ -4,7 +4,7 @@
       <div class="col-md-4 offset-md-4 card">
   <div class="card-body">
     <h2>Создать контрагента</h2>
-    <%= simple_form_for @contractor, url: contractor_index_path do |f| %>
+    <%= simple_form_for @contractor do |f| %>
       <%= f.input :title do %>
         <div class="input-group">
           <%= f.input_field :title, class: 'form-control' %>
