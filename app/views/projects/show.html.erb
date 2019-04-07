@@ -9,8 +9,8 @@
             </span>
           </div>
           <div class="col-2 u-ver-divider">
-            <label class="d-block small text-muted mb-0">План. бюджет:</label>
-            <span class="font-weight-medium font-size-13"><%= @project.budget %> руб.</span>
+            <label class="d-block small text-muted mb-0">Факт бюджет:</label>
+            <span class="font-weight-medium font-size-13"> <%= payment_summ %> / <%= @project.budget %> руб.</span>
           </div>
           <div class="col-2 u-ver-divider">
             <label class="d-block small text-muted mb-0">Расход, руб:</label>
@@ -26,7 +26,7 @@
           </div>
           <div class="col-2">
             <div class="position-relative">
-              <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
+              <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3 float-right" href="javascript:;" role="button"
                  aria-controls="dropdownBasicExample"
                  aria-haspopup="true"
                  aria-expanded="true"
@@ -52,7 +52,7 @@
               </div>
             </div>
           </div>
-      </div>
+        </div>
       </div>
       <div class="bg-white p-4 mt-1">
         <!-- Nav -->

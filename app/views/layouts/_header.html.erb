@@ -6,8 +6,13 @@
           <img src="/include/svg/logos/logo.svg" alt="Logo" style="width: 36px">
           pm tool
         <% end %>
-        <%= Russian::strftime(Time.now, '%e %b %H:%M' ) %>
-
+        <% if user_signed_in? %>
+          <ul class="navbar-nav u-header__navbar-nav ml-lg-auto">
+            <li class="nav-item">
+              <%= link_to "Проекты", projects_path, class: 'nav-link u-header__nav-link' %>
+            </li>
+          </ul>
+        <% end %>
         <button type="button" class="navbar-toggler btn u-hamburger"
                 aria-label="Toggle navigation"
                 aria-expanded="false"
@@ -28,7 +33,7 @@
             <% end %>
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to "Проекты", projects_path, class: 'nav-link u-header__nav-link' %>
+                <a href="" class="nav-link u-header__nav-link"><%= Russian::strftime(Time.now, '%e %b %H:%M' ) %></a>
               </li>
               <li class="nav-item">
                 <a id="sidebarAccountInvoker" class="btn btn-xs u-btn-text-secondary u-sidebar--account__toggle-bg ml-1" href="javascript:;" role="button"

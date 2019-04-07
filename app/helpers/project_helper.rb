@@ -36,4 +36,7 @@ module ProjectHelper
   def  todo_summ
     @todo.sum(:cost)
   end
+  def  payment_summ
+    @payment.sum(:cost)
+  end
 end
