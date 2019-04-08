@@ -6,11 +6,11 @@
         <h5 class="mb-1"><%= contractor.title %></h5>
         <small class="text-muted">ИНН <%= contractor.inn %></small>
       </div>
-        <% if !contractor.kpp.blank? %>
-          <p class="mb-1"><%= contractor.kpp %></p>
+        <% if !contractor.address.blank? %>
+          <p class="mb-1"><%= contractor.address %></p>
         <% end %>
         <% if !contractor.ogrn.blank? %>
-          <small class="text-muted"><%= contractor.user.name %></small>
+          <small class="text-muted">Ответственный: <%= contractor.user.name %></small>
         <% end %>
       <% end %>
   <% end %>

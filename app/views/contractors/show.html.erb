@@ -36,7 +36,15 @@
         </div>
       </div>
       <div class="bg-white p-4 mt-1">
-        wedwed
+        <% if !@contractor.address.blank? %>
+          <p class="mb-1">Адрес: <%= @contractor.address %></p>
+        <% end %>
+        <% if !@contractor.ogrn.blank? %>
+          <p class="mb-1">ОГРН: <%= @contractor.ogrn %></p>
+        <% end %>
+        <% if !@contractor.kpp.blank? %>
+          <p class="mb-1">КПП: <%= @contractor.kpp %></p>
+        <% end %>
       </div>
     </div>
   </div>

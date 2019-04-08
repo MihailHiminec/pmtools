@@ -3,12 +3,12 @@
   <div class="card-body p-4">
     <div class="media align-items-center">
       <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-3">
-                    <span class="u-icon__inner"> <%= project.title[0,2].upcase %></span>
-                  </span>
+        <span class="u-icon__inner"> <%= project.title[0,2].upcase %></span>
+      </span>
       <div class="media-body">
         <span class="text-dark"><%= link_to project.title, project %></span>
         <small class="d-block text-secondary"><%= project.description %></small>
-        <small class="d-block text-secondary"><%= project.contractor %></small>
+        <small class="d-block text-secondary"><%= @contractor %></small>
       </div>
       <div class="media-body text-right">
         <!-- Settings Dropdown -->

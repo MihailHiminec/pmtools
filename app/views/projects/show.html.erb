@@ -128,7 +128,7 @@
                   <tr>
 
                     <td class="align-middle font-weight-normal">
-                      <%= link_to edit_project_todo_path(todo.project_id, todo) do %>
+                      <%= link_to project_todo_path(todo.project_id, todo) do %>
                         <%= todo.title %>
                       <% end %>
                     </td>
@@ -290,26 +290,29 @@
                       <tr>
 
                         <td class="align-middle font-weight-normal">
-                          <%= link_to edit_project_payment_path(payment.project_id, payment) do %>
+                          <%= link_to project_payment_path(payment.project_id, payment) do %>
                             <%= payment.invoice_number %>
                           <% end %>
                         </td>
 
                         <td class="align-middle">
-                          <%= link_to edit_project_payment_path(payment.project_id, payment) do %>
+                          <%= link_to project_payment_path(payment.project_id, payment) do %>
                             <%= payment.invoice_discription.html_safe %>
                           <% end %>
                         </td>
 
                         <td class="align-middle font-weight-normal">
-                          <%= link_to edit_project_payment_path(payment.project_id, payment) do %>
+                          <%= link_to project_payment_path(payment.project_id, payment) do %>
                             <%= payment.cost %>
                           <% end %>
                         </td>
                         <td class="align-middle">
                           <% if payment.contractor.blank? %>
+                          Не указан
                             <% else %>
-                            <%= payment.contractor.title %>
+                              <%= link_to contractor_path(payment.contractor.id) do %>
+                                <%= payment.contractor.title %>
+                              <% end %>
                             <% end %>
                         </td>
 

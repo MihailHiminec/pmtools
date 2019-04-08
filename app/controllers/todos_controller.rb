@@ -27,7 +27,7 @@ class TodosController < ApplicationController
   def update
     @todo = Todo.find(params[:id])
     if @todo.update_attributes(todo_params)
-      redirect_to project_path(set_project),
+      redirect_to project_todo_path,
                   notice: 'Задача обновлена!'
     else
       render 'edit'
@@ -38,7 +38,7 @@ class TodosController < ApplicationController
     @todo = set_project.todos.new(todo_params)
     @todo.user = current_user
     if @todo.save
-      redirect_to project_path(set_project),
+      redirect_to project_todo_path,
                   notice: 'Задача добавлена!'
     else
       render action: 'new'
