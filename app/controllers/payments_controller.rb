@@ -27,7 +27,7 @@ class PaymentsController < ApplicationController
   def update
     @payment = Payment.find(params[:id])
     if @payment.update_attributes(payment_params)
-      redirect_to project_path(set_project),
+      redirect_to project_payment_path(set_project),
                   notice: "Счет № #{@payment.invoice_number} обновлен!"
     else
       render 'edit'
