@@ -2,35 +2,35 @@
   <div class="u-bg-light-blue-50">
     <div class="container-fluid u-space-3">
       <div class="col-md-4 offset-md-4 card">
-  <div class="card-body">
-    <h2>Создать контрагента</h2>
-    <%= simple_form_for @contractor do |f| %>
-      <%= f.input :title do %>
-        <div class="input-group">
-          <%= f.input_field :title, class: 'form-control' %>
-        </div>
-      <% end %>
+        <div class="card-body">
+        <h2>Создать контрагента</h2>
+        <%= simple_form_for @contractor do |f| %>
+          <%= f.input :title do %>
+            <div class="input-group">
+              <%= f.input_field :title, class: 'form-control' %>
+            </div>
+          <% end %>
 
-        <div class="input-group">
-          <%= f.text_area :address, class: 'form-control' %>
-        </div>
+            <div class="input-group">
+              <%= f.text_area :address, class: 'form-control' %>
+            </div>
 
-      <div class="input-group">
-        <%= f.input_field :inn, class: 'form-control' %>
+          <div class="input-group">
+            <%= f.input_field :inn, class: 'form-control' %>
+          </div>
+
+          <div class="input-group">
+            <%= f.input_field :kpp, class: 'form-control' %>
+          </div>
+
+          <div class="input-group">
+            <%= f.input_field :ogrn, class: 'form-control' %>
+          </div>
+
+          <%= f.button :submit, class: 'btn-primary btn-sm' %>
+        <% end %>
       </div>
-
-      <div class="input-group">
-        <%= f.input_field :kpp, class: 'form-control' %>
       </div>
-
-      <div class="input-group">
-        <%= f.input_field :ogrn, class: 'form-control' %>
-      </div>
-
-      <%= f.button :submit, class: 'btn-primary btn-sm' %>
-    <% end %>
-  </div>
-</div>
     </div>
   </div>
 </main>

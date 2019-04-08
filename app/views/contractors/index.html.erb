@@ -12,8 +12,6 @@
                       <span class="u-icon__inner">+</span>
                     </span>
                 <% end %>
-
-
                 </li>
               </ul>
           </div>
@@ -22,9 +20,7 @@
       </div>
       <!-- End Nav -->
       <% if !@contractors.blank? %>
-        <div class="row card-deck d-block ">
-            <%= render 'contractors/contractor' %>
-        </div>
+        <%= render 'contractors/contractor' %>
         <% else %>
         <div class="alert alert-primary alert-dismissible fade show pt-8 mt-8 mb-8 pb-8" role="alert">
           К сожалению контрагентов не найдено

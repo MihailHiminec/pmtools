@@ -1,6 +1,6 @@
 <main id="content" role="main" class="calc-100vh-footer">
-  <div class="u-bg-light-blue-50 calc-100vh-footer">
-    <div class="container pt-1 u-space-1">
+  <div class="calc-100vh-footer">
+    <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
 
     <!-- Balances -->
     <div class="card-deck d-block d-lg-flex mb-6">
@@ -12,7 +12,7 @@
                   <span class="fa font-size-26 u-icon__inner">₽</span>
                 </span>
             <div class="media-body">
-              <span class="d-block font-size-32">₽ 45 000</span>
+              <span class="d-block font-size-32">₽ <%= set_is_completed_payments %></span>
               <h2 class="h6 text-secondary font-weight-normal mb-0">Доступный остаток</h2>
             </div>
           </div>
@@ -28,7 +28,7 @@
                   <span class="fa fa-coins font-size-26 u-icon__inner"></span>
                 </span>
             <div class="media-body">
-              <span class="d-block font-size-32">₽ 132 000</span>
+              <span class="d-block font-size-32">₽ </span>
               <h3 class="h6 text-secondary font-weight-normal mb-0">Вознаграждения</h3>
             </div>
           </div>

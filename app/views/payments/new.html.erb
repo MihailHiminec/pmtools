@@ -1,38 +1,35 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
     <%= simple_form_for @payment, url: project_payments_url, method: :post do |f| %>
-      <div class="container-fluid u-space-2 u-space-1-bottom u-space-bottom-0--lg">
-        <div class="d-lg-flex justify-content-lg-between align-items-lg-center">
-          <!-- Navbar -->
-          <div class="mt-2 u-header u-header--bg-transparent-lg z-index-4">
-            <div class="u-header__section ">
-              <nav class="js-breadcrumb-menu navbar navbar-expand-lg u-header__navbar hs-menu-initialized hs-menu-horizontal">
-                <div id="breadcrumbNavBar" class="collapse navbar-collapse py-0">
-                  <ul class="navbar-nav w-100 u-header__navbar-nav">
-                    <!-- Others -->
-                    <li class="nav-item u-header__nav-item">
-                      <%= link_to 'Назад', project_path(@set_project), class: "nav-link u-header__nav-link" %>
-                    </li>
-                    <!-- Others -->
-                  </ul>
-                </div>
-              </nav>
+      <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
+        <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+          <div class="row align-items-center">
+            <div class="col-2">
+              <%= link_to 'Назад', project_path(@set_project), class: "nav-link u-header__nav-link" %>
             </div>
-          </div>
-          <!-- End Navbar -->
 
-          <div class="ml-lg-auto mt-2">
-            <!-- Button -->
-            <%= f.button :submit, class: 'btn-success btn-xs' %>
-            <!-- End Button -->
+            <div class="col-10">
+              <%= f.button :submit, 'Сохранить', class: 'btn-success btn-xs float-right' %>
+            </div>
           </div>
         </div>
       </div>
-      <div class="container-fluid u-space-1-bottom">
+      <div class="container-fluid u-space-1-bottom mt-1">
         <div class="row">
-          <div class="col-md-3">
-            <div class="card">
+          <div class="col-md-3 pr-1">
+            <div class="bg-white">
               <div class="card-body">
+                <%= f.input :plan_date_payment, label: 'Планируемая дата' do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.date_field :plan_date_payment, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image u-disable' %>
+                  </div>
+                <% end %>
+                <%= f.input :rel_date_payment, label: 'Дата признания' do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.date_field :rel_date_payment, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image u-disable' %>
+                  </div>
+                <% end %>
+
                 <%= f.input :cost, label: 'Сумма, руб.' do %>
                   <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
                     <%= f.input_field :cost, class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image u-disable' %>
@@ -45,35 +42,34 @@
                 </div>
 
                 <div class="form-group u-no__bordered">
-                  <label class="form-control-label">Проект</label>
-                  <%= f.association :project, label_method: :title, label: false, include_blank: false %>
+                  <label class="form-control-label">Контрагент</label>
+                  <%= f.association :contractor, label_method: :title, label: false, include_blank: false %>
                 </div>
 
                 <div class="form-group u-no__bordered">
-                  <label class="form-control-label">Контрагент</label>
-                  <%= f.association :contractor, label_method: :title, label: false, include_blank: false %>
+                  <label class="form-control-label">Проект</label>
+                  <%= f.association :project, label_method: :title, label: false, include_blank: false %>
                 </div>
 
               </div>
             </div>
           </div>
 
-          <div class="col-md-9">
-            <div class="card">
+          <div class="col-md-9 pl-0">
+            <div class="bg-white">
               <div class="card-body">
-
-                <%= f.input :invoice_number, label: false do %>
-                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                    <%= f.input_field :invoice_number, hint: false, placeholder: 'Номер счета', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
-                  </div>
-                <% end %>
-
+                <div>
+                  <%= f.input :invoice_number, label: false do %>
+                    <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                      <%= f.input_field :invoice_number, hint: false, placeholder: 'Номер счета', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                    </div>
+                  <% end %>
+                </div>
                 <%= f.input :invoice_discription, label: 'Основание счета' do %>
                   <div class="input-group input-group-sm u-form u-form--sm u-form--modern u-summernote-editor">
                     <%= f.text_area :invoice_discription, class: 'form-control u-form__input js-summernote-editor' %>
                   </div>
                 <% end %>
-
               </div>
             </div>
           </div>
