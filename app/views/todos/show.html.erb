@@ -7,10 +7,10 @@
             <%= link_to 'Назад', project_path(@todo.project_id), class: "nav-link u-header__nav-link" %>
           </div>
 
-          <div class="col-10 justify-content-xl-end">
-            <div class="btn-group-toggle d-inline-block">
-              <%= link_to 'Редактировать', edit_project_todo_path(@todo.id) %>
-            </div>
+          <div class="col-10">
+            <%= link_to edit_project_todo_path(@set_project), class: 'float-right' do %>
+              Редактировать
+            <% end %>
           </div>
         </div>
       </div>
@@ -21,22 +21,28 @@
           <div class="bg-white">
             <div class="card-body">
 
-              <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                Крайний срок: <%= @todo.deadline %>
+              <span class="small text-secondary">Крайний срок</span>
+              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
+                <%= @todo.deadline %>
               </div>
 
-              <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                Выделено: <%= @todo.time_spent %> ч.
-              </div>
-              <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                Затрачено: <%= @todo.time_to_complete %> ч.
+              <span class="small text-secondary">Выделено</span>
+              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
+                <%= @todo.time_spent %> ч.
               </div>
 
-              <div class="form-group u-no__bordered">
+              <span class="small text-secondary">Затрачено</span>
+              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
+                <%= @todo.time_to_complete %> ч.
+              </div>
+
+              <span class="small text-secondary">Приоритет</span>
+              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
                 <%= @todo.priority %>
               </div>
 
-              <div class="form-group u-no__bordered">
+              <span class="small text-secondary">Исполнитель</span>
+              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
                 <%= @todo.user.name %>
               </div>
 
@@ -48,9 +54,13 @@
         <div class="col-md-9 pl-0">
           <div class="bg-white">
             <div class="card-body">
-              <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.title %>
+              <div>
+                <h4><%= @todo.title %></h4>
               </div>
+              <div class="text-left">
+                <span class="small text-secondary">Содержание</span>
+              </div>
+              <hr>
               <div class="input-group input-group-sm u-form u-form--sm u-form--modern u-summernote-editor">
                 <%= @todo.discription.html_safe %>
               </div>
