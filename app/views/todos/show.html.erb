@@ -52,12 +52,12 @@
                       <span class="fas fa-arrow-up mr-1 text-warning"></span>
                       Средний
                     </div>
-                  <% elsif todo.priority == 1 %>
+                  <% elsif @todo.priority == 1 %>
                     <div class="text-danger">
                       <span class="fa fa-arrow-up mr-1 text-danger"></span>
                       Высокий
                     </div>
-                  <% else todo.priority == 2 %>
+                  <% else @todo.priority == 2 %>
                     <div class="text-success">
                       <span class="fas fa-arrow-down mr-1 text-success"></span>
                       Низкий
