@@ -1,6 +1,6 @@
 <%  @search.results.each do |project| %>
   <%= link_to project, class: 'list-group-item list-group-item-action justify-content-between d-flex w-100' do %>
-    <div><%= project.title %></div>
-    <div><span class="fas fa-tasks u-sidebar--account__list-icon mr-2"></span><%= project.todos.count %></div>
+    <div class="small"><%= project.title %></div>
+    <div class="small"><span class="fas fa-tasks u-sidebar--account__list-icon mr-2"></span><%= project.todos.count %></div>
   <% end %>
 <% end %>

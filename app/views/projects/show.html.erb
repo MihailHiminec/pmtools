@@ -1,31 +1,18 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
-    <div class="container-fluid pt-1 u-space-1-bottom">
-      <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+    <div class="container-fluid pt-2 u-space-1-bottom">
+      <div class="bg-white pl-4 pr-4 pt-1 pb-1 mb-1">
         <div class="row align-items-center">
-          <div class="col-2 u-ver-divider">
-            <span class="font-weight-medium font-size-14">
-              <%= link_to "#{ @project.title }", edit_project_url, method: :get , class: 'u-list__link' %>
-            </span>
-          </div>
-          <div class="col-2 u-ver-divider">
-            <label class="d-block small text-muted mb-0">Факт бюджет:</label>
-            <span class="font-weight-medium font-size-13"> <%= payment_summ %> / <%= @project.budget %> руб.</span>
-          </div>
-          <div class="col-2 u-ver-divider">
-            <label class="d-block small text-muted mb-0">Расход, руб:</label>
-            <span class="font-weight-medium font-size-13"><%= rel_cost %> / <%= cost_project_todo %> руб.</span>
-          </div>
-          <div class="col-2 u-ver-divider">
-            <label class="d-block small text-muted mb-0">Расход, час:</label>
-            <span class="font-weight-medium font-size-13"><%= time_to_complete_summ %> ч. / <%= time_spent_summ %> ч.</span>
-          </div>
-          <div class="col-2 u-ver-divider">
-            <label class="d-block small text-muted mb-0">Ближайшая оплата:</label>
-            <span class="font-weight-medium font-size-13"><%= the_nearest_pay %> / <%= the_nearest_pay_summ %> руб.</span>
-          </div>
-          <div class="col-2">
-            <div class="position-relative">
+          <div class="col-12">
+            <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+              <%= link_to edit_project_url, method: :get , class: 'u-list__link' do %>
+                 <%= @project.title %>
+              <% end %>
+              <div class="d-flex align-items-center">
+                <%= link_to edit_project_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-4' do %>
+                  Изменить
+                <% end %>
+                <div class="position-relative">
               <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
                  aria-controls="dropdownBasicExample"
                  aria-haspopup="true"
@@ -38,19 +25,43 @@
                  data-unfold-hide-on-scroll="true"
                  data-unfold-animation-in="slideInUp"
                  data-unfold-animation-out="fadeOut">
-                Выполнить
+                Выполнить действие
                 <span class="ml-2 fa fa-ellipsis-v"></span>
               </a>
-
               <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
                 <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
                 <%= link_to 'Добавить счет', new_project_payment_path(@project), class: "u-list__link" %>
                 <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
                 <hr>
-                <%= link_to 'Изменить', edit_project_url, method: :get , class: 'u-list__link' %>
                 <a class="u-list__link" href="#">Удалить</a>
               </div>
             </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+        <div class="row align-items-center">
+          <div class="col-2 u-ver-divider">
+            <label class="d-block small text-muted mb-0">Оплата проекта:</label>
+            <span class="font-weight-medium font-size-13"> <%= set_payment_true %> / <%= payment_summ %> руб.</span>
+          </div>
+          <div class="col-2 u-ver-divider">
+            <label class="d-block small text-muted mb-0">Ближайшая оплата:</label>
+            <span class="font-weight-medium font-size-13"><%= the_nearest_pay %> / <%= the_nearest_pay_summ %> руб.</span>
+          </div>
+          <div class="col-2 u-ver-divider">
+            <label class="d-block small text-muted mb-0">Расход времени, руб:</label>
+            <span class="font-weight-medium font-size-13"><%= rel_cost %> / <%= cost_project_todo %> руб.</span>
+          </div>
+          <div class="col-2 u-ver-divider">
+            <label class="d-block small text-muted mb-0">Расход времени, час:</label>
+            <span class="font-weight-medium font-size-13"><%= time_to_complete_summ %> ч. / <%= time_spent_summ %> ч.</span>
+          </div>
+          <div class="col-2">
+          </div>
+          <div class="col-2">
           </div>
         </div>
       </div>
@@ -91,32 +102,32 @@
                 <thead>
                 <tr class="text-uppercase font-size-14">
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Дело
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Исполнитель
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Приоритет
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Дедлайн
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Статус
                     </div>
                   </th>
                   <th scope="col" class="font-weight-medium">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between align-items-center small">
                       Действия
                     </div>
                   </th>

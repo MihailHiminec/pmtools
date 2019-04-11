@@ -1,16 +1,19 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
-    <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
-      <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+    <div class="container-fluid pt-2 u-space-1-bottom u-space-bottom-0--lg">
+      <div class="bg-white pl-4 pr-4 pt-1 pb-1 mb-1">
         <div class="row align-items-center">
-          <div class="col-2">
-            <%= link_to 'Назад', project_path(@todo.project_id), class: "nav-link u-header__nav-link" %>
-          </div>
-
-          <div class="col-10">
-            <%= link_to edit_project_todo_path(@set_project), class: 'float-right' do %>
-              Редактировать
-            <% end %>
+          <div class="col-12">
+            <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+              <%= link_to project_path(@todo.project_id), method: :get , class: 'u-list__link' do %>
+                <%= @todo.project.title %>
+              <% end %>
+              <div class="d-flex align-items-center">
+                <%= link_to edit_project_todo_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-4' do %>
+                  Изменить
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -20,32 +23,55 @@
         <div class="col-md-3 pr-1">
           <div class="bg-white">
             <div class="card-body">
-
-              <span class="small text-secondary">Крайний срок</span>
-              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.deadline %>
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary d-flex">Крайний срок</span>
+                <div class="small text-secondary">
+                  <%= @todo.deadline %>
+                </div>
               </div>
 
-              <span class="small text-secondary">Выделено</span>
-              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.time_spent %> ч.
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary">Выделено</span>
+                <div class="small text-secondary">
+                  <%= @todo.time_spent %> ч.
+                </div>
               </div>
 
-              <span class="small text-secondary">Затрачено</span>
-              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.time_to_complete %> ч.
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary">Затрачено</span>
+                <div class="small text-secondary">
+                  <%= @todo.time_to_complete %> ч.
+                </div>
               </div>
 
-              <span class="small text-secondary">Приоритет</span>
-              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.priority %>
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary">Приоритет</span>
+                <div class="small">
+                  <% if @todo.priority == 0 %>
+                    <div class="text-warning">
+                      <span class="fas fa-arrow-up mr-1 text-warning"></span>
+                      Средний
+                    </div>
+                  <% elsif todo.priority == 1 %>
+                    <div class="text-danger">
+                      <span class="fa fa-arrow-up mr-1 text-danger"></span>
+                      Высокий
+                    </div>
+                  <% else todo.priority == 2 %>
+                    <div class="text-success">
+                      <span class="fas fa-arrow-down mr-1 text-success"></span>
+                      Низкий
+                    </div>
+                  <% end %>
+                </div>
               </div>
 
-              <span class="small text-secondary">Исполнитель</span>
-              <div class="small input-group input-group-sm u-form u-form--sm u-form--modern">
-                <%= @todo.user.name %>
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary">Исполнитель</span>
+                <div class="small text-secondary">
+                  <%= @todo.user.name %>
+                </div>
               </div>
-
 
             </div>
           </div>

@@ -37,11 +37,14 @@ class TodosController < ApplicationController
   def create
     @todo = set_project.todos.new(todo_params)
     @todo.user = current_user
-    if @todo.save
-      redirect_to project_todo_path,
-                  notice: 'Задача добавлена!'
-    else
-      render action: 'new'
+    respond_to do |format|
+      if @todo.save
+        format.html { redirect_to set_project, notice: 'Задача добавлена!' }
+        format.json { render :show, status: :created, location: @todo }
+      else
+        format.html { render :new }
+        format.json { render json: @todo.errors, status: :unprocessable_entity }
+      end
     end
   end
 

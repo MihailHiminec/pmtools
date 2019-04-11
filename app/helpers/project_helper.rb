@@ -7,6 +7,11 @@ module ProjectHelper
     @project.cost_per_hour * @todo.sum(:time_to_complete)
   end
 
+  def set_payment_true
+    @payments = Payment.where.not(rel_date_payment: '')
+    @payments.sum(:cost)
+  end
+
   def time_to_complete_summ
     @todo.sum(:time_to_complete)
   end
@@ -33,9 +38,11 @@ module ProjectHelper
   def the_nearest_pay_summ
     @the_nearest_pay_summ = @payment[0].try(:cost)
   end
+
   def  todo_summ
     @todo.sum(:cost)
   end
+
   def  payment_summ
     @payment.sum(:cost)
   end
