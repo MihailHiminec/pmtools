@@ -143,8 +143,12 @@
                     </td>
 
                     <td class="align-middle">
-                      <%= link_to user_path(todo.user_id) do %>
-                        <%= todo.user.name %>
+                      <% if User.where(id: todo.implementer).blank? %>
+                        Нет исполнителя
+                      <% else %>
+                      <%= link_to user_path(todo.implementer) do %>
+                        <%= User.find(todo.implementer).name %>
+                        <% end %>
                       <% end %>
                     </td>
 
@@ -312,7 +316,7 @@
 
                         <td class="align-middle font-weight-normal">
                           <%= link_to project_payment_path(payment.project_id, payment) do %>
-                            <%= payment.cost %>
+                            ₽<%= payment.cost %>
                           <% end %>
                         </td>
                         <td class="align-middle">

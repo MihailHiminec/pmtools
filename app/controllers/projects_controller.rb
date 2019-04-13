@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     @payments = Payment.order(id: :desc).all
   end
 
+
   # GET /projects/1
   # GET /projects/1.json
   def show

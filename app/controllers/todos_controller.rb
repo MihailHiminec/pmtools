@@ -63,6 +63,6 @@ class TodosController < ApplicationController
     @set_project = Project.find(params[:project_id])
   end
   def todo_params
-    params.require(:todo).permit([ :title, :discription, :user_id, :project_id, :deadline, :isCompleted, :time_spent, :cost, :time_to_complete, :priority ])
+    params.require(:todo).permit([ :title, :discription, :user_id, :project_id, :deadline, :isCompleted, :time_spent, :cost, :time_to_complete, :priority, :implementer ])
   end
 end

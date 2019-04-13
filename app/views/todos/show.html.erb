@@ -67,9 +67,20 @@
               </div>
 
               <div class="d-flex justify-content-between m-4">
-                <span class="small text-secondary">Исполнитель</span>
+                <span class="small text-secondary">Постановщик</span>
                 <div class="small text-secondary">
                   <%= @todo.user.name %>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between m-4">
+                <span class="small text-secondary">Исплнитель</span>
+                <div class="small text-secondary">
+                  <% if User.where(id: @todo.implementer).blank? %>
+                    Нет исполнителя
+                    <% else %>
+                    <%= User.find(@todo.implementer).name %>
+                  <% end %>
                 </div>
               </div>
 

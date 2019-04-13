@@ -2,14 +2,17 @@
   <div class="u-bg-light-blue-50 calc-100vh-footer">
     <%= simple_form_for @todo, url: project_todos_url, method: :post do |f| %>
       <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
-        <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+        <div class="bg-white pl-4 pr-4 pt-1 pb-1 mb-1">
           <div class="row align-items-center">
-            <div class="col-2">
-              <%= link_to 'Назад', project_path(@set_project), class: "nav-link u-header__nav-link" %>
-            </div>
-
-            <div class="col-10">
-              <%= f.button :submit, 'Сохранить', class: 'btn-success btn-xs float-right' %>
+            <div class="col-12">
+              <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+                <%= link_to project_path(@set_project), method: :get , class: 'u-list__link' do %>
+                  Назад
+                <% end %>
+                <div class="d-flex align-items-center">
+                  <%= f.button :submit,'Сохранить',  class: 'u-list__link u-unfold-wrapper pr-4' %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -34,8 +37,12 @@
                   <%= f.input :priority, collection: [['0', 'Средний'], ['1', 'Высокий'], ['1', 'Низкий']], label_method: :second, value_method: :first, label: false, include_blank: false %>
                 </div>
                 <div class="form-group u-no__bordered">
-                  <label class="form-control-label">Ответственный</label>
+                  <label class="form-control-label">Постановщик</label>
                   <%= f.association :user, label_method: :email, label: false, include_blank: false %>
+                </div>
+                <div class="form-group u-no__bordered">
+                  <label class="form-control-label">Исполнитель</label>
+                  <%= f.input :implementer, collection: User.all, label_method: :email, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
                 </div>
               </div>
             </div>
@@ -47,7 +54,7 @@
                 <div>
                   <%= f.input :title, label: false do %>
                     <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
-                      <%= f.input_field :title, hint: false, placeholder: 'Задача №', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                      <%= f.input_field :title, hint: false, placeholder: 'Название', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
                     </div>
                   <% end %>
                 </div>

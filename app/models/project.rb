@@ -5,4 +5,5 @@ class Project < ApplicationRecord
   has_many :payments
   belongs_to :user
   belongs_to :contractor
+
 end

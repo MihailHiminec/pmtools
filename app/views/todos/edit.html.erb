@@ -45,10 +45,15 @@
                     <%= f.input :priority, collection: [['0', 'Средний'], ['1', 'Высокий'], ['2', 'Низкий']], label_method: :second, value_method: :first, label: false, include_blank: false %>
                   </div>
 
-                    <div class="form-group u-no__bordered">
-                      <label class="form-control-label">Ответственный</label>
-                      <%= f.association :user, label_method: :email, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
-                    </div>
+                  <div class="form-group u-no__bordered">
+                    <label class="form-control-label">Постановщик</label>
+                    <%= f.association :user, label_method: :email, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
+                  </div>
+
+                  <div class="form-group u-no__bordered">
+                    <label class="form-control-label">Исполнитель</label>
+                    <%= f.input :implementer, collection: User.all, label_method: :email, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false %>
+                  </div>
 
 
                 </div>

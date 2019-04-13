@@ -12,5 +12,4 @@ class Todo < ApplicationRecord
       end
     end
   end
-
 end
