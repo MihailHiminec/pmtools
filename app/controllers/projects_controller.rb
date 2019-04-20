@@ -45,15 +45,13 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    @project = Project.find params[:id]
-
     respond_to do |format|
-      if @project.update_attributes(project_params)
-        format.html { redirect_to(@project, :notice => 'Обновлено') }
-        format.json { respond_with_bip(@project) }
+      if set_project.update_attributes(project_params)
+        format.html { redirect_to(set_project, :notice => 'Обновлено') }
+        format.json { respond_with_bip(set_project) }
       else
         format.html { render :action => "edit" }
-        format.json { respond_with_bip(@project) }
+        format.json { respond_with_bip(set_project) }
       end
     end
   end
@@ -76,6 +74,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit([ :title, :description, :budget, :cost_per_hour, :contractor_id, :user_id ])
+    params.require(:project).permit([:title, :description, :budget, :cost_per_hour, :user_id, :contractor_id])
   end
 end
