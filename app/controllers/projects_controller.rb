@@ -45,13 +45,15 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    @project = Project.find params[:id]
+
     respond_to do |format|
-      if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Проект обновлен!' }
-        format.json { render :show, status: :ok, location: @project }
+      if @project.update_attributes(project_params)
+        format.html { redirect_to(@project, :notice => 'Обновлено') }
+        format.json { respond_with_bip(@project) }
       else
-        format.html { render :edit }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@project) }
       end
     end
   end

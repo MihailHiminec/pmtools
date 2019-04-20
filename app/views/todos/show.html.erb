@@ -33,14 +33,14 @@
               <div class="d-flex justify-content-between m-4">
                 <span class="small text-secondary">Выделено</span>
                 <div class="small text-secondary">
-                  <%= @todo.time_spent %> ч.
+                  <%= best_in_place @todo, :time_spent, :url => project_todo_path, :as => :input %> ч.
                 </div>
               </div>
 
               <div class="d-flex justify-content-between m-4">
                 <span class="small text-secondary">Затрачено</span>
                 <div class="small text-secondary">
-                  <%= @todo.time_to_complete %> ч.
+                  <%= best_in_place @todo, :time_to_complete, :url => project_todo_path, :as => :input %> ч.
                 </div>
               </div>
 

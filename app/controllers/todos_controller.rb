@@ -25,12 +25,16 @@ class TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find(params[:id])
-    if @todo.update_attributes(todo_params)
-      redirect_to project_todo_path,
-                  notice: 'Задача обновлена!'
-    else
-      render 'edit'
+    @todo = Todo.find params[:id]
+
+    respond_to do |format|
+      if @todo.update_attributes(todo_params)
+        format.html { redirect_to(project_todo_path, :notice => 'Обновлено') }
+        format.json { respond_with_bip(@todo) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@todo) }
+      end
     end
   end
 

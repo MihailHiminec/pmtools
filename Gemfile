@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'best_in_place', '~> 3.1', '>= 3.1.1'
 
 group :production do
   gem 'unicorn', '~> 4.8.3'

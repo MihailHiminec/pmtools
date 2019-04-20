@@ -12,5 +12,6 @@
 //
 //= require jquery3
 //= require rails-ujs
+//= require best_in_place
 //= require activestorage
 //= require turbolinks
