@@ -29,135 +29,16 @@
     </div>
   </div>
 
-  <div class="u-bg-light-blue-50">
+  <div class="u-bg-light">
     <div class="container-fluid pt-3 u-space-2-bottom">
-      <!-- Nav -->
-      <div class="u-tab u-tab--md mb-md-4">
-        <div class="row justify-content-between align-items-center">
-          <div class="col-md-5 order-md-2 text-md-right">
-            <!-- Select -->
-            <select class="js-select u-select" data-width="fit" data-style="bg-transparent text-secondary font-size-14 font-weight-normal pl-0">
-              <option value="taskSelect1" title="View" selected>Completed tasks</option>
-              <option value="taskSelect2">Incomplete tasks</option>
-              <option value="taskSelect3">All tasks</option>
-            </select>
-            <!-- End Select -->
-
-            <!-- Select -->
-            <select class="js-select u-select" data-width="fit" data-style="bg-transparent text-secondary font-size-14 font-weight-normal">
-              <option value="sortSelect1" title="Sort" selected>None</option>
-              <option value="sortSelect2">Project</option>
-              <option value="sortSelect3">Due date</option>
-              <option value="sortSelect4">Likes</option>
-            </select>
-            <!-- End Select -->
-          </div>
-
-          <div class="col-md-7 order-md-1">
-            <!-- Nav Pills -->
-            <ul class="nav nav-pills" id="pills-tab" role="tablist">
-              <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Обзор</a>
-              </li>
-              <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Проекты <span class=" u-badge u-badge-primary rounded-circle"><%= @user.projects.count %></span></a>
-              </li>
-              <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">Прогресс</a>
-              </li>
-              <li class="nav-item u-tab__nav-item">
-                <a class="nav-link u-tab__nav-link" id="pills-four-tab" data-toggle="pill" href="#pills-four" role="tab" aria-controls="pills-four" aria-selected="false">Документы</a>
-              </li>
-            </ul>
-            <!-- End Nav Pills -->
-          </div>
-        </div>
-      </div>
-      <!-- End Nav -->
-
-      <!-- Nav Content -->
-      <div class="tab-content" id="pills-tabContent">
-        <!-- Content One -->
-        <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
-
-        </div>
-        <!-- End Content One -->
-
-        <!-- Content Two -->
-        <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
-          <!-- Projects -->
-          <div class="card-deck d-block ">
-            <% @user.projects.each do |project| %>
-              <div class="card u-info-v2 mb-3">
-                <div class="card-body p-4">
-                  <div class="media align-items-center">
-                    <span class="u-icon u-icon-primary--air u-icon--md rounded-circle mr-3">
-                      <span class="u-icon__inner"><%= project.title[0,2].upcase %></span>
-                    </span>
-                    <div class="media-body">
-                      <span class="text-dark"><%= link_to project.title, project %></span>
-                      <small class="d-block text-secondary"><%= project.description %></small>
-                    </div>
-                    <div class="media-body text-right">
-                      <!-- Settings Dropdown -->
-                      <div class="position-relative">
-                        <a id="referralsSettingsDropdownInvoker-<%= project.id %>" class="u-icon u-icon--air u-icon--sm u-bg-transparent" href="javascript:;" role="button"
-                           aria-controls="referralsSettingsDropdown-<%= project.id %>"
-                           aria-haspopup="true"
-                           aria-expanded="false"
-                           data-unfold-event="click"
-                           data-unfold-target="#referralsSettingsDropdown-<%= project.id %>"
-                           data-unfold-type="css-animation"
-                           data-unfold-duration="300"
-                           data-unfold-delay="300"
-                           data-unfold-hide-on-scroll="true"
-                           data-unfold-animation-in="slideInUp"
-                           data-unfold-animation-out="fadeOut">
-                          <span class="fa fa-ellipsis-h u-icon__inner"></span>
-                        </a>
-
-                        <div id="referralsSettingsDropdown-<%= project.id %>" class="u-unfold right-0 text-left mt-2" aria-labelledby="referralsSettingsDropdownInvoker-<%= project.id %>" style="min-width: 190px;">
-                          <%= link_to 'Удалить', project_path(project.id, project), 'data-method' => :delete, class: "u-list__link" %>
-                          <%= link_to 'Редактировать', edit_project_path(project), class: "u-list__link" %>
-                        </div>
-                      </div>
-                      <!-- End Settings Dropdown -->
-                      <span class="text-primary ml-3">
-                        ₽<%= project.budget %>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-          <!-- End Projects -->
-        </div>
-        <!-- End Content Two -->
-
-        <!-- Content Three -->
-        <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">
-          <div class="text-center py-4">
-            <div class="w-md-80 w-lg-50 text-center mx-auto">
-              <img class="w-100 mb-7" src="../include/svg/flat-icons/data-report-flat-concept-illustration.svg" alt="SVG Illustration">
-              <h4 class="h5 font-weight-normal">Весь прогресс и анализ данных к задачам появится здесь.</h4>
-            </div>
-          </div>
-        </div>
-        <!-- End Content Three -->
-
-        <!-- Content Four -->
-        <div class="tab-pane fade" id="pills-four" role="tabpanel" aria-labelledby="pills-four-tab">
-          <div class="text-center py-4">
-            <div class="w-md-80 w-lg-50 text-center mx-auto">
-              <img class="w-100 mb-7" src="../include/svg/flat-icons/image-upload-flat-concept-illustration.svg" alt="SVG Illustration">
-              <h4 class="h5 font-weight-normal">Все вложения к задачам и разговорам в этом проекте появятся здесь.</h4>
-            </div>
-          </div>
-        </div>
-        <!-- End Content Four -->
-      </div>
-      <!-- End Nav Content -->
+      <!-- Projects -->
+      <%  @user.projects.each do |project| %>
+        <%= link_to project, class: 'list-group-item list-group-item-action justify-content-between d-flex w-100' do %>
+          <div class="small"><%= project.title %></div>
+          <div class="small"><span class="fas fa-tasks u-sidebar--account__list-icon mr-2"></span><%= project.todos.count %></div>
+        <% end %>
+      <% end %>
+      <!-- End Projects -->
     </div>
   </div>
 </main>

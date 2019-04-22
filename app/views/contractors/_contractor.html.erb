@@ -3,13 +3,13 @@
       <%= link_to contractor, class: 'list-group-item list-group-item-action flex-column align-items-start' do %>
 
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"><%= contractor.title %></h5>
-        <small class="text-muted">ИНН <%= contractor.inn %></small>
+        <%= contractor.title %>
+        <small class="small text-muted">ИНН <%= contractor.inn %></small>
       </div>
         <% if !contractor.address.blank? %>
-          <p class="mb-1"><%= contractor.address %></p>
+          <p class="small mb-1"><%= contractor.address %></p>
         <% end %>
-        <% if !contractor.ogrn.blank? %>
+        <% if !contractor.user.name.blank? %>
           <small class="text-muted">Ответственный: <%= contractor.user.name %></small>
         <% end %>
       <% end %>

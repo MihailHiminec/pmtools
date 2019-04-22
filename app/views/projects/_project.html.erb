@@ -1,6 +1,17 @@
 <%  @search.results.each do |project| %>
   <%= link_to project, class: 'list-group-item list-group-item-action justify-content-between d-flex w-100' do %>
-    <div class="small"><%= project.title %></div>
-    <div class="small"><span class="fas fa-tasks u-sidebar--account__list-icon mr-2"></span><%= project.todos.count %></div>
+    <div class="small">
+
+      <% if project.todos.where("deadline < ?", DateTime.now).blank? %>
+        <span class="fa fa-circle text-primary small mr-1"></span>
+        <% else %>
+        <span class="fa fa-circle text-warning small mr-1"></span>
+      <% end %>
+      <%= project.title %>
+    </div>
+    <div class="small">
+      <span class="fa fa-tasks u-sidebar--account__list-icon mr-2"></span>
+      <%= project.todos.count %>
+    </div>
   <% end %>
 <% end %>

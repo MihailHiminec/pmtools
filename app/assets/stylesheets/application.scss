@@ -11,6 +11,8 @@ label {
 }
 .u-no__border-color {
   border-color: transparent!important;
+  height: calc(1rem + 2px);
+  padding: 0.75rem 0rem;
 }
 .u-no__image {
   background-image: none!important;
@@ -19,6 +21,9 @@ label {
   border-color: transparent!important;
   box-shadow: none!important;
   background-image: none!important;
+  height: calc(1rem + 2px);
+  padding: 0.75rem 0rem;
+  font-size: 0.75rem;
 }
 .file-attachment-input__label {
   position: absolute;
