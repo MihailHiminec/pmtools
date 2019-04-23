@@ -16,6 +16,8 @@ class ProjectsController < ApplicationController
   def show
     @todo = @project.todos.order(id: :desc).all
     @payment = @project.payments.order(id: :desc).all
+    @incomplete_todos = @project.todos.incomplete
+    @complete_todos = @project.todos.complete
   end
 
   # GET /projects/new

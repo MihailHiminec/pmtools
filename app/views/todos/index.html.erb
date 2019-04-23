@@ -9,6 +9,23 @@
         </p>
         <div class="card">
           <div class="card-body">
+            <h1>Incomplete Tasks</h1>
+            <ul>
+              <% for todo in @incomplete_todos %>
+                <li>
+                  <%= todo.title %>
+                </li>
+              <% end %>
+            </ul>
+
+            <h1>Complete Tasks</h1>
+            <ul>
+              <% for todo in @complete_todos %>
+                <li>
+                  <%= todo.title %>
+                </li>
+              <% end %>
+            </ul>
             <table class="table table-borderless">
               <thead>
               <tr>

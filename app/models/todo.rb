@@ -12,4 +12,13 @@ class Todo < ApplicationRecord
       end
     end
   end
+
+  def self.incomplete
+    where(isCompleted: false).order('id DESC')
+  end
+
+  def self.complete
+    where(isCompleted: true).order('id DESC')
+  end
+
 end

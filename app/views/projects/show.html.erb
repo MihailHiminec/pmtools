@@ -1,7 +1,7 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
     <div class="container-fluid pt-2 u-space-1-bottom">
-      <div class="bg-white pl-4 pr-4 pt-1 pb-1 mb-1">
+      <div class="shadow-sm p-3 mb-2 bg-white rounded">
         <div class="row align-items-center">
           <div class="col-12">
             <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <div class="bg-white pl-4 pr-4 pt-3 pb-3">
+      <div class="shadow-sm p-3 mb-2 bg-white rounded">
         <div class="row align-items-center">
           <div class="col-2 u-ver-divider">
             <label class="d-block small text-muted mb-0">Оплата проекта:</label>
@@ -63,7 +63,7 @@
           </div>
         </div>
       </div>
-      <div class="bg-white p-4 mt-1">
+      <div class="shadow-sm p-3 mb-2 bg-white rounded">
         <!-- Nav -->
         <div class="row justify-content-between align-items mb-4">
           <div class="col-md-7 order-md-1">
@@ -133,9 +133,63 @@
                 </thead>
 
                 <tbody class="font-size-14">
-                <% @todo.each do |todo| %>
-                  <tr>
+                  <% for todo in @incomplete_todos %>
+                    <tr>
 
+                      <td class="align-middle font-weight-normal">
+                        <%= link_to project_todo_path(todo.project_id, todo) do %>
+                          <%= todo.title %>
+                        <% end %>
+                      </td>
+
+                      <td class="align-middle">
+                        <% if User.where(id: todo.implementer).blank? %>
+                          Нет исполнителя
+                        <% else %>
+                        <%= link_to user_path(todo.implementer) do %>
+                          <%= User.find(todo.implementer).name %>
+                          <% end %>
+                        <% end %>
+                      </td>
+
+                      <% if todo.priority == 0 %>
+                        <td class="align-middle text-warning">
+                          <span class="fas fa-arrow-up mr-1"></span>
+                          Средний
+                        </td>
+                      <% elsif todo.priority == 1 %>
+                        <td class="align-middle text-danger">
+                          <span class="fa fa-arrow-up mr-1"></span>
+                          Высокий
+                        </td>
+                      <% else todo.priority == 2 %>
+                        <td class="align-middle text-success">
+                          <span class="fas fa-arrow-down mr-1"></span>
+                          Низкий
+                        </td>
+                      <% end %>
+
+                      <td class="align-middle">
+                        <% if todo.deadline.blank?  %>
+                            Без крайнего срока
+                          <% else %>
+                            <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
+                        <% end %>
+                      </td>
+
+                      <td class="align-middle">
+                        <span class="fa fa-circle text-primary small mr-1"></span>
+                        In progress
+                      </td>
+
+                      <td class="align-middle">
+                        <%= link_to 'Удалить', project_todo_path(todo.project_id, todo), method: :delete %>
+                      </td>
+
+                    </tr>
+                  <% end %>
+                <% for todo in @complete_todos %>
+                  <tr class="border-top">
                     <td class="align-middle font-weight-normal">
                       <%= link_to project_todo_path(todo.project_id, todo) do %>
                         <%= todo.title %>
@@ -146,8 +200,8 @@
                       <% if User.where(id: todo.implementer).blank? %>
                         Нет исполнителя
                       <% else %>
-                      <%= link_to user_path(todo.implementer) do %>
-                        <%= User.find(todo.implementer).name %>
+                        <%= link_to user_path(todo.implementer) do %>
+                          <%= User.find(todo.implementer).name %>
                         <% end %>
                       <% end %>
                     </td>
@@ -171,9 +225,9 @@
 
                     <td class="align-middle">
                       <% if todo.deadline.blank?  %>
-                          Без крайнего срока
-                        <% else %>
-                          <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
+                        Без крайнего срока
+                      <% else %>
+                        <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
                       <% end %>
                     </td>
 
