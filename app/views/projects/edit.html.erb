@@ -1,25 +1,18 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
     <%= simple_form_for @project do |f| %>
-      <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
-        <div class="bg-white pl-4 pr-4 pt-1 pb-1">
-          <div class="row align-items-center">
-            <div class="col-2">
-              <%= link_to 'Назад', project_path(@project), class: "nav-link u-header__nav-link" %>
-            </div>
-
-            <div class="col-10 justify-content-xl-end">
-              <!-- Button -->
-              <%= f.button :submit,'Сохранить',  class: 'btn-success btn-xs float-right' %>
-              <!-- End Button -->
+      <div class="shadow-sm pl-5 pr-3 mb-2 pt-1 pb-1 bg-white">
+          <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+            <%= link_to 'Назад', project_path(@project), class: "u-list__link" %>
+            <div class="d-flex align-items-center">
+              <%= f.button :submit,'Сохранить',  class: 'u-list__link u-unfold-wrapper' %>
             </div>
           </div>
-        </div>
       </div>
       <div class="container-fluid u-space-1-bottom mt-1">
         <div class="row">
           <div class="col-md-3 pr-1">
-            <div class="bg-white">
+            <div class="shadow-sm  mb-2 bg-white rounded">
               <div class="card-body">
                 <div class="form-group u-no__bordered">
                   <label class="form-control-label">Предпологаемый бюджет</label>
@@ -45,7 +38,7 @@
           </div>
 
           <div class="col-md-9 pl-0">
-            <div class="bg-white">
+            <div class="shadow-sm  mb-2 bg-white rounded">
               <div class="card-body">
 
                 <%= f.input :title, label: false do %>

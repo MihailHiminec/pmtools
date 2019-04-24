@@ -5,7 +5,6 @@ class TodosController < ApplicationController
 
 
   def index
-    @todo = @set_project.todos
     @incomplete_todos = Todo.incomplete
     @complete_todos = Todo.complete
     respond_to do |format|

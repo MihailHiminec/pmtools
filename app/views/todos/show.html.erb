@@ -1,27 +1,22 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
-    <div class="container-fluid pt-2 u-space-1-bottom u-space-bottom-0--lg">
-      <div class="bg-white pl-4 pr-4 pt-1 pb-1 mb-1">
-        <div class="row align-items-center">
-          <div class="col-12">
-            <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
-              <%= link_to project_path(@todo.project_id), method: :get , class: 'u-list__link' do %>
-                <%= @todo.project.title %>
+    <div class="shadow-sm pl-5 pr-3 mb-2 pt-1 pb-1 bg-white">
+      <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+            <%= link_to project_path(@todo.project_id), method: :get , class: 'u-list__link' do %>
+              <span class="fa fa-angle-left pr-2" aria-hidden="true"></span>
+              <%= @todo.project.title %>
+            <% end %>
+            <div class="d-flex align-items-center">
+              <%= link_to edit_project_todo_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-4' do %>
+                Изменить
               <% end %>
-              <div class="d-flex align-items-center">
-                <%= link_to edit_project_todo_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-4' do %>
-                  Изменить
-                <% end %>
-              </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
     <div class="container-fluid u-space-1-bottom mt-1">
       <div class="row">
         <div class="col-md-3 pr-1">
-          <div class="bg-white">
+          <div class="shadow-sm  mb-2 bg-white rounded">
             <div class="card-body">
               <div class="d-flex justify-content-between m-4">
                 <span class="small text-secondary d-flex">Крайний срок</span>
@@ -89,7 +84,7 @@
         </div>
 
         <div class="col-md-9 pl-0">
-          <div class="bg-white">
+          <div class="shadow-sm  mb-2 bg-white rounded">
             <div class="card-body">
               <div>
                 <h4><%= @todo.title %></h4>

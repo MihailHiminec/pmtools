@@ -1,44 +1,43 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="u-bg-light-blue-50 calc-100vh-footer">
-    <div class="container-fluid pt-2 u-space-1-bottom">
-      <div class="shadow-sm p-3 mb-2 bg-white rounded">
-        <div class="row align-items-center">
-          <div class="col-12">
-            <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+    <div class="shadow-sm pl-5 pr-3 mb-2 pt-1 pb-1 bg-white">
+          <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+            <div>
               <%= best_in_place @project, :title, :as => :input %>
-              <div class="d-flex align-items-center">
-                <%= link_to edit_project_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-4' do %>
-                  Изменить
-                <% end %>
-                <div class="position-relative">
-              <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
-                 aria-controls="dropdownBasicExample"
-                 aria-haspopup="true"
-                 aria-expanded="true"
-                 data-unfold-event="click"
-                 data-unfold-target="#dropdownBasicExample"
-                 data-unfold-type="css-animation"
-                 data-unfold-duration="300"
-                 data-unfold-delay="300"
-                 data-unfold-hide-on-scroll="true"
-                 data-unfold-animation-in="slideInUp"
-                 data-unfold-animation-out="fadeOut">
-                Выполнить действие
-                <span class="ml-2 fa fa-ellipsis-v"></span>
-              </a>
-              <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
-                <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
-                <%= link_to 'Добавить счет', new_project_payment_path(@project), class: "u-list__link" %>
-                <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
-                <hr>
-                <a class="u-list__link" href="#">Удалить</a>
+              <span class="fa fa-pen text-secondary small opacity-0_2" aria-hidden="true"></span>
+            </div>
+            <div class="d-flex align-items-center">
+              <%= link_to edit_project_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-3' do %>
+                Изменить
+              <% end %>
+              <div class="position-relative">
+                <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
+                   aria-controls="dropdownBasicExample"
+                   aria-haspopup="true"
+                   aria-expanded="true"
+                   data-unfold-event="click"
+                   data-unfold-target="#dropdownBasicExample"
+                   data-unfold-type="css-animation"
+                   data-unfold-duration="300"
+                   data-unfold-delay="300"
+                   data-unfold-hide-on-scroll="true"
+                   data-unfold-animation-in="slideInUp"
+                   data-unfold-animation-out="fadeOut">
+                  Выполнить действие
+                  <span class="ml-2 fa fa-ellipsis-v"></span>
+                </a>
+                <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
+                  <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
+                  <%= link_to 'Добавить счет', new_project_payment_path(@project), class: "u-list__link" %>
+                  <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
+                  <hr>
+                  <a class="u-list__link" href="#">Удалить</a>
+                </div>
               </div>
             </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+    <div class="container-fluid u-space-1-bottom">
       <div class="shadow-sm p-3 mb-2 bg-white rounded">
         <div class="row align-items-center">
           <div class="col-2 u-ver-divider">
@@ -70,7 +69,7 @@
             <!-- Nav Pills -->
             <ul class="nav nav-pills" id="pills-tab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Дела</a>
+                <a class="nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Задачи</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Календарь</a>
@@ -95,8 +94,8 @@
           <!-- Content One -->
           <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
             <!-- Transaction Table -->
-            <div class="table-responsive-md u-datatable">
-              <table id="dt-todo-list" class="js-datatable table table-borderless u-datatable__striped u-datatable__content">
+            <div class="table-responsive-md">
+              <table id="dt-todo-list" class="table table-borderless u-datatable__striped u-datatable__content">
                 <thead>
                 <tr class="text-uppercase font-size-14">
                   <th scope="col" class="font-weight-medium">
@@ -131,13 +130,70 @@
                   </th>
                 </tr>
                 </thead>
-
                 <tbody class="font-size-14">
                   <% for todo in @incomplete_todos %>
                     <tr>
+                        <td class="align-middle font-weight-normal">
+                          <%= link_to project_todo_path(todo.project_id, todo) do %>
+                            <% if !("#{todo.deadline}" < "#{DateTime.now}" && todo.deadline) %>
+                              <span class="fa fa-circle text-primary small mr-1"></span>
+                            <% else %>
+                              <span class="fa fa-circle text-warning small mr-1"></span>
+                            <% end %>
+                            <%= todo.title %>
+                          <% end %>
+                        </td>
 
+                        <td class="align-middle">
+                          <% if User.where(id: todo.implementer).blank? %>
+                            Нет исполнителя
+                          <% else %>
+                          <%= link_to user_path(todo.implementer) do %>
+                            <%= User.find(todo.implementer).name %>
+                            <% end %>
+                          <% end %>
+                        </td>
+
+                        <% if todo.priority == 0 %>
+                          <td class="align-middle text-warning">
+                            <span class="fas fa-arrow-up mr-1"></span>
+                            Средний
+                          </td>
+                        <% elsif todo.priority == 1 %>
+                          <td class="align-middle text-danger">
+                            <span class="fa fa-arrow-up mr-1"></span>
+                            Высокий
+                          </td>
+                        <% else todo.priority == 2 %>
+                          <td class="align-middle text-success">
+                            <span class="fas fa-arrow-down mr-1"></span>
+                            Низкий
+                          </td>
+                        <% end %>
+
+                        <td class="align-middle">
+                          <% if todo.deadline.blank?  %>
+                              Без крайнего срока
+                            <% else %>
+                              <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
+                          <% end %>
+                        </td>
+
+                        <td class="align-middle">
+                          In progress
+                        </td>
+
+                        <td class="align-middle">
+                          <%= link_to 'Удалить', project_todo_path(todo.project_id, todo), method: :delete %>
+                        </td>
+
+                      </tr>
+                  <% end %>
+                  <% for todo in @complete_todos %>
+                    <tr>
                       <td class="align-middle font-weight-normal">
                         <%= link_to project_todo_path(todo.project_id, todo) do %>
+                          <span class="fa fa-circle text-secondary small mr-1"></span>
                           <%= todo.title %>
                         <% end %>
                       </td>
@@ -146,8 +202,8 @@
                         <% if User.where(id: todo.implementer).blank? %>
                           Нет исполнителя
                         <% else %>
-                        <%= link_to user_path(todo.implementer) do %>
-                          <%= User.find(todo.implementer).name %>
+                          <%= link_to user_path(todo.implementer) do %>
+                            <%= User.find(todo.implementer).name %>
                           <% end %>
                         <% end %>
                       </td>
@@ -171,14 +227,13 @@
 
                       <td class="align-middle">
                         <% if todo.deadline.blank?  %>
-                            Без крайнего срока
-                          <% else %>
-                            <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
+                          Без крайнего срока
+                        <% else %>
+                          <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
                         <% end %>
                       </td>
 
                       <td class="align-middle">
-                        <span class="fa fa-circle text-primary small mr-1"></span>
                         In progress
                       </td>
 
@@ -188,60 +243,6 @@
 
                     </tr>
                   <% end %>
-                <% for todo in @complete_todos %>
-                  <tr class="border-top">
-                    <td class="align-middle font-weight-normal">
-                      <%= link_to project_todo_path(todo.project_id, todo) do %>
-                        <%= todo.title %>
-                      <% end %>
-                    </td>
-
-                    <td class="align-middle">
-                      <% if User.where(id: todo.implementer).blank? %>
-                        Нет исполнителя
-                      <% else %>
-                        <%= link_to user_path(todo.implementer) do %>
-                          <%= User.find(todo.implementer).name %>
-                        <% end %>
-                      <% end %>
-                    </td>
-
-                    <% if todo.priority == 0 %>
-                      <td class="align-middle text-warning">
-                        <span class="fas fa-arrow-up mr-1"></span>
-                        Средний
-                      </td>
-                    <% elsif todo.priority == 1 %>
-                      <td class="align-middle text-danger">
-                        <span class="fa fa-arrow-up mr-1"></span>
-                        Высокий
-                      </td>
-                    <% else todo.priority == 2 %>
-                      <td class="align-middle text-success">
-                        <span class="fas fa-arrow-down mr-1"></span>
-                        Низкий
-                      </td>
-                    <% end %>
-
-                    <td class="align-middle">
-                      <% if todo.deadline.blank?  %>
-                        Без крайнего срока
-                      <% else %>
-                        <%= Russian::strftime(todo.deadline,'%e %b %Y') %>
-                      <% end %>
-                    </td>
-
-                    <td class="align-middle">
-                      <span class="fa fa-circle text-primary small mr-1"></span>
-                      In progress
-                    </td>
-
-                    <td class="align-middle">
-                      <%= link_to 'Удалить', project_todo_path(todo.project_id, todo), method: :delete %>
-                    </td>
-
-                  </tr>
-                <% end %>
                 </tbody>
               </table>
             </div>
@@ -310,7 +311,7 @@
                     <thead>
                     <tr class="text-uppercase font-size-14">
                       <th scope="col" class="font-weight-medium">
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-between align-items-center mr-3">
                           Номер
                         </div>
                       </th>
@@ -358,6 +359,11 @@
 
                         <td class="align-middle font-weight-normal">
                           <%= link_to project_payment_path(payment.project_id, payment) do %>
+                            <% if payment.try(:rel_date_payment).try(:strftime, ("%d/%m/%y")).blank? %>
+                              <span class="fa fa-circle bg-transparent small mr-1"></span>
+                            <% else %>
+                              <span class="fa fa-circle text-success small mr-1"></span>
+                            <% end %>
                             <%= payment.invoice_number %>
                           <% end %>
                         </td>
