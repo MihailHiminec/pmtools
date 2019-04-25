@@ -24,33 +24,5 @@
     <!-- ========== SIDEBAR ========== -->
     <%= render 'layouts/sidebar' %>
     <!-- ========== END SIDEBAR ========== -->
-
-    <!-- JS Plugins Init. -->
-    <script>
-        $(document).bind('turbolinks:load', function() {
-            // initialization of unfold component
-            $.HSCore.components.HSUnfold.init($('[data-unfold-target]'), {
-                afterOpen: function () {
-                    $(this).find('input[type="search"]').focus();
-                }
-            });
-            $('.best_in_place').best_in_place();
-            // initialization of malihu scrollbar
-            $.HSCore.components.HSMalihuScrollBar.init($('.js-scrollbar'));
-            // initialization of text editors
-            $.HSCore.components.HSSummernoteEditor.init('.js-summernote-editor');
-            // initialization of show animations
-            $.HSCore.components.HSShowAnimation.init('.js-animation-link');
-        });
-
-        $(document).on('ready turbolinks:load', function () {
-            // initialization of file attach module
-            $.HSCore.components.HSFileAttach.init('.js-custom-file-attach');
-            // initialization of custom select
-            $('.js-select').selectpicker();
-
-        });
-    </script>
-
   </body>
 </html>

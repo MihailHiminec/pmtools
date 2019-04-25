@@ -57,7 +57,7 @@ class ContractorsController < ApplicationController
   def destroy
     @contractor.destroy
     respond_to do |format|
-      format.html { redirect_to contractor_path, notice: 'Проект удален!' }
+      format.html { redirect_to @contractors, notice: 'Контрагент удален!' }
       format.json { head :no_content }
     end
   end

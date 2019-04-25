@@ -1,0 +1,40 @@
+<main id="content" role="main" class="calc-100vh-footer">
+  <div class="calc-100vh-footer">
+    <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
+      <!-- Nav -->
+      <div class="row justify-content-between align-items mb-4 u-space-1-top">
+        <div class="order-md-2 mb-3 mb-md-0">
+          <div class="position-relative">
+            <ul class="nav">
+              <li class="nav-item">
+                <%= link_to new_contact_path, class: "nav-link font-weight-bold" do %>
+                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-2">
+                      <span class="u-icon__inner">+</span>
+                    </span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-7 order-md-1">
+          <%= form_for @search, as: :f, method: :get, url: contacts_path, :html => {:class => 'input-group-sm u-form u-form--sm u-form--modern'} do |e| %>
+            <%= e.search_field :name, class: 'form-control u-form__input', placeholder: 'Поиск' %>
+            <%= link_to 'Дата создания', contacts_path(f: @search.sort_params_for(:created_at)), class: @search.sort?(:created_at) && 'u-label u-label--xs u-label--primary active' %>
+            <%= e.select :user_id, User.all.map { |u| [u.name, u.id] }, { :include_blank => 'Все контакты' }, {class: 'js-select u-select', 'data-width' => 'fit', 'data-style' => 'bg-transparent text-secondary font-size-14 font-weight-normal pl-0', onchange: 'this.form.submit()'} %>
+          <% end %>
+        </div>
+      </div>
+      <!-- End Nav -->
+      <% if @search.results? %>
+        <ul class="list-group shadow-sm">
+          <%= render 'contacts/contact' %>
+        </ul>
+      <% else %>
+        <div class="alert alert-warning alert-dismissible fade show pt-8 mt-8 mb-8 pb-8" role="alert">
+          К сожалению по заданным параметрам контактов не найдено
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

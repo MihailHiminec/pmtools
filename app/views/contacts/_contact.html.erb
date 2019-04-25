@@ -1,0 +1,9 @@
+<%  @search.results.each do |contact| %>
+  <%= link_to contact, class: 'list-group-item list-group-item-action justify-content-between d-flex w-100' do %>
+    <div class="small">
+      <%= contact.patronymic %>
+      <%= contact.name %>
+      <%= contact.surname %>
+    </div>
+  <% end %>
+<% end %>

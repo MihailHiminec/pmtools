@@ -1,0 +1,64 @@
+<main id="content" role="main" class="calc-100vh-footer">
+  <div class="u-bg-light-blue-50 calc-100vh-footer">
+    <%= simple_form_for @contact do |f| %>
+      <div class="shadow-sm pl-3 pr-3 mb-2 pt-2 pb-2 bg-white">
+        <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+          <%= link_to contacts_path, class: "nav-link" do %>
+            <span class="fa fa-angle-left pr-2" aria-hidden="true"></span>
+            Назад
+          <% end %>
+          <div class="justify-content-xl-end">
+            <%= f.button :submit,'Сохранить',  class: 'u-list__link u-unfold-wrapper' %>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid u-space-1-bottom mt-1 content-center">
+        <div class="row">
+          <div class="col-md-4 pr-1">
+            <div class="shadow-sm  mb-2 bg-white rounded">
+              <div class="card-body">
+                <%= f.input :patronymic, label: false do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.input_field :patronymic, hint: false, placeholder: 'Фамилия', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                  </div>
+                <% end %>
+                <%= f.input :name, label: false do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.input_field :name, hint: false, placeholder: 'Имя', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                  </div>
+                <% end %>
+                <%= f.input :surname, label: false do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.input_field :surname, hint: false, placeholder: 'Отчество', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                  </div>
+                <% end %>
+                <%= f.input :email, label: false do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.input_field :email, hint: false, placeholder: 'E-mail', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                  </div>
+                <% end %>
+                <%= f.input :phone, label: false do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                    <%= f.input_field :phone, hint: false, placeholder: 'Телефон', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 pl-1">
+            <div class="shadow-sm  mb-2 bg-white rounded">
+              <div class="card-body">
+                <%= f.input :comment, label: 'Комментарий' do %>
+                  <div class="input-group input-group-sm u-form u-form--sm u-form--modern u-summernote-editor">
+                    <%= f.text_area :comment, class: 'form-control u-form__input js-summernote-editor' %>
+                  </div>
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</main>
