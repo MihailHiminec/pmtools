@@ -40,25 +40,21 @@
     <div class="container-fluid u-space-1-bottom">
       <div class="shadow-sm p-3 mb-2 bg-white rounded">
         <div class="row align-items-center">
-          <div class="col-2 u-ver-divider">
+          <div class="col-3 u-ver-divider">
             <label class="d-block small text-muted mb-0">Оплата проекта:</label>
             <span class="font-weight-medium font-size-13"> <%= set_payment_true %> / <%= payment_summ %> руб.</span>
           </div>
-          <div class="col-2 u-ver-divider">
+          <div class="col-3 u-ver-divider">
             <label class="d-block small text-muted mb-0">Ближайшая оплата:</label>
             <span class="font-weight-medium font-size-13"><%= the_nearest_pay %> / <%= the_nearest_pay_summ %> руб.</span>
           </div>
-          <div class="col-2 u-ver-divider">
+          <div class="col-3 u-ver-divider">
             <label class="d-block small text-muted mb-0">Расход времени, руб:</label>
             <span class="font-weight-medium font-size-13"><%= rel_cost %> / <%= cost_project_todo %> руб.</span>
           </div>
-          <div class="col-2 u-ver-divider">
+          <div class="col-3">
             <label class="d-block small text-muted mb-0">Расход времени, час:</label>
             <span class="font-weight-medium font-size-13"><%= time_to_complete_summ %> ч. / <%= time_spent_summ %> ч.</span>
-          </div>
-          <div class="col-2">
-          </div>
-          <div class="col-2">
           </div>
         </div>
       </div>
@@ -131,7 +127,7 @@
                 </tr>
                 </thead>
                 <tbody class="font-size-14">
-                  <% for todo in @incomplete_todos %>
+                <% for todo in @incomplete_todos %>
                     <tr>
                         <td class="align-middle font-weight-normal">
                           <%= link_to project_todo_path(todo.project_id, todo) do %>

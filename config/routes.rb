@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :contractors, only: [:index, :new, :create, :destroy, :show, :edit, :update]
     resources :contacts, only: [:index, :new, :create, :destroy, :show, :edit, :update]
     resources :projects, only: [:index, :new, :create, :destroy, :show, :edit, :update] do
-      put 'complete_todo', to: 'todos#complete', as: :complete_todos
       resources :todos
       resources :payments
     end
