@@ -133,7 +133,7 @@
                 </tr>
                 </thead>
                 <tbody class="font-size-14">
-                <% for todo in @incomplete_todos %>
+                  <% for todo in @incomplete_todos %>
                     <tr>
                         <td class="align-middle font-weight-normal">
                           <%= link_to project_todo_path(todo.project_id, todo) do %>
@@ -307,8 +307,8 @@
 
           <!-- Content Four -->
           <div class="tab-pane fade" id="pills-five" role="tabpanel" aria-labelledby="pills-five-tab">
-                <!-- Transaction Table -->
-                <div class="table-responsive-md u-datatable">
+            <!-- Transaction Table -->
+            <div class="table-responsive-md u-datatable">
                   <table id="dt-todo-list" class="js-datatable table table-borderless u-datatable__striped u-datatable__content">
                     <thead>
                     <tr class="text-uppercase font-size-14">
@@ -414,8 +414,8 @@
                     </tbody>
                   </table>
                 </div>
-                <!-- End Transaction Table -->
-              </div>
+            <!-- End Transaction Table -->
+          </div>
           <!-- End Content Four -->
         </div>
         <!-- End Nav Content -->

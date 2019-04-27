@@ -13,11 +13,11 @@ end
 Rails.application.routes.draw do
   constraints(SubdomainPresent) do
     root 'dashboard#index', as: :subdomain_root
+    get 'finance', to: 'finance#index'
     devise_for :users
     resources :users, only: [ :index, :show, :edit ]
     resources :contractors, only: [:index, :new, :create, :destroy, :show, :edit, :update]
     resources :contacts, only: [:index, :new, :create, :destroy, :show, :edit, :update]
-    get 'payments', action: :index, controller: 'payments'
     resources :projects, only: [:index, :new, :create, :destroy, :show, :edit, :update] do
       resources :todos
       resources :payments

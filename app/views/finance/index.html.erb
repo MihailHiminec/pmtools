@@ -1,0 +1,108 @@
+<!-- Transaction Table -->
+<div class="table-responsive-md u-datatable">
+  <table id="dt-todo-list" class="js-datatable table table-borderless u-datatable__striped u-datatable__content">
+    <thead>
+    <tr class="text-uppercase font-size-14">
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center mr-3">
+          Номер
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Основание
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Сумма
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Контрагент
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          План
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Факт
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Ответственный
+        </div>
+      </th>
+      <th scope="col" class="font-weight-medium">
+        <div class="d-flex justify-content-between align-items-center">
+          Действия
+        </div>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody class="font-size-14">
+    <% @payment.each do |payment| %>
+      <tr>
+
+        <td class="align-middle font-weight-normal">
+          <%= link_to project_payment_path(payment.project_id, payment) do %>
+            <% if payment.try(:rel_date_payment).try(:strftime, ("%d/%m/%y")).blank? %>
+              <span class="fa fa-circle bg-transparent small mr-1"></span>
+            <% else %>
+              <span class="fa fa-circle text-success small mr-1"></span>
+            <% end %>
+            <%= payment.invoice_number %>
+          <% end %>
+        </td>
+
+        <td class="align-middle">
+          <%= link_to project_payment_path(payment.project_id, payment) do %>
+            <%= payment.invoice_discription.html_safe %>
+          <% end %>
+        </td>
+
+        <td class="align-middle font-weight-normal">
+          <%= link_to project_payment_path(payment.project_id, payment) do %>
+            ₽<%= payment.cost %>
+          <% end %>
+        </td>
+        <td class="align-middle">
+          <% if payment.contractor.blank? %>
+            Не указан
+          <% else %>
+            <%= link_to contractor_path(payment.contractor.id) do %>
+              <%= payment.contractor.title %>
+            <% end %>
+          <% end %>
+        </td>
+
+        <td class="align-middle">
+          <%= payment.try(:plan_date_payment).try(:strftime, ("%d/%m/%y")) %>
+        </td>
+
+        <td class="align-middle">
+          <%= payment.try(:rel_date_payment).try(:strftime, ("%d/%m/%y")) %>
+        </td>
+
+        <td class="align-middle">
+          <%= link_to user_path(payment.user_id) do %>
+            <%= payment.user.name %>
+          <% end %>
+        </td>
+
+        <td class="align-middle">
+          <%= link_to 'Удалить', project_payment_path(payment.project_id, payment), method: :delete %>
+        </td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<!-- End Transaction Table -->
