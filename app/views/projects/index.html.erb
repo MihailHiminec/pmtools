@@ -1,23 +1,22 @@
 <main id="content" role="main" class="calc-100vh-footer">
   <div class="calc-100vh-footer">
-    <div class="container-fluid pt-1 u-space-1-bottom u-space-bottom-0--lg">
-      <!-- Nav -->
-      <div class="row justify-content-between align-items mb-4 u-space-1-top">
-        <div class="order-md-2 mb-3 mb-md-0">
-          <div class="position-relative">
-              <ul class="nav">
-                <li class="nav-item">
-                <%= link_to new_project_path, class: "nav-link font-weight-bold" do %>
-                    <span class="u-icon u-icon-success--air u-icon--md rounded-circle mr-2">
-                      <span class="u-icon__inner">+</span>
-                    </span>
-                <% end %>
-                </li>
-              </ul>
-          </div>
+    <div class="shadow-sm pl-5 pr-3 mb-2 pt-2 pb-2 bg-white">
+      <div class="font-weight-medium font-size-14 d-flex justify-content-between align-items-center">
+        <div>
+          Проекты
         </div>
-
-        <div class="col-md-7 order-md-1">
+        <div class="d-flex align-items-center">
+          <%= link_to new_project_path, class: "u-list__link u-unfold-wrapper pr-3" do %>
+            Новый
+            <span class="pl-2 fa fa-plus-circle text-secondary small opacity-0_2"></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid u-space-1-bottom u-space-bottom-0--lg">
+      <!-- Nav -->
+      <div class="row mt-4 mr-1 ml-1 mb-4">
+        <div class="col-md-12 order-md-1">
           <%= form_for @search, as: :f, method: :get, url: projects_path, :html => {:class => 'input-group-sm u-form u-form--sm u-form--modern'} do |e| %>
             <%= e.search_field :title, class: 'form-control u-form__input', placeholder: 'Поиск' %>
             <%= link_to 'Дата создания', projects_path(f: @search.sort_params_for(:created_at)), class: @search.sort?(:created_at) && 'u-label u-label--xs u-label--primary active' %>
