@@ -7,8 +7,13 @@
               <span class="pl-2 fa fa-pen text-secondary small opacity-0_2" aria-hidden="true"></span>
             </div>
             <div class="d-flex align-items-center">
-              <%= link_to edit_project_url, method: :get , class: 'u-list__link u-unfold-wrapper pr-3' do %>
-                Изменить
+              <%= link_to new_project_todo_path(@project), class: "u-list__link u-unfold-wrapper pr-3" do %>
+                Задача
+                <span class="pl-2 fa fa-plus-circle text-secondary small opacity-0_2" aria-hidden="true"></span>
+              <% end %>
+              <%= link_to new_project_payment_path(@project), class: "u-list__link u-unfold-wrapper pr-3" do %>
+                Cчет
+                <span class="pl-2 fa fa-plus-circle text-secondary small opacity-0_2" aria-hidden="true"></span>
               <% end %>
               <div class="position-relative">
                 <a id="dropdownBasicExampleInvoker" class="u-unfold-wrapper mr-3" href="javascript:;" role="button"
@@ -27,8 +32,9 @@
                   <span class="ml-2 fa fa-ellipsis-v"></span>
                 </a>
                 <div id="dropdownBasicExample" class="u-unfold mt-2" aria-labelledby="dropdownBasicExampleInvoker">
-                  <%= link_to 'Добавить дело', new_project_todo_path(@project), class: "u-list__link" %>
-                  <%= link_to 'Добавить счет', new_project_payment_path(@project), class: "u-list__link" %>
+                  <%= link_to edit_project_url, method: :get , class: 'u-list__link' do %>
+                    Изменить
+                  <% end %>
                   <%= link_to "Экспорт в CSV", project_todos_url(@project, format: "csv"), class: "u-list__link" %>
                   <hr>
                   <a class="u-list__link" href="#">Удалить</a>
