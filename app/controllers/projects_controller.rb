@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
     @projects = Project.order(id: :desc).all
     @search = ProjectSearch.new filters: params[:f]
     @payments = Payment.order(id: :desc).all
+    @project = Project.new
   end
 
 
@@ -35,7 +36,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Проект добавлен!' }
+        format.html { redirect_to @projects, notice: 'Проект добавлен!' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

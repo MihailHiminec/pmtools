@@ -6,10 +6,22 @@
           Проекты
         </div>
         <div class="d-flex align-items-center">
-          <%= link_to new_project_path, class: "u-list__link u-unfold-wrapper pr-3" do %>
-            Новый
-            <span class="pl-2 fa fa-plus-circle text-secondary small opacity-0_2"></span>
-          <% end %>
+          <a id="addProjectInvoker" class="u-list__link u-unfold-wrapper pr-3" href="javascript:;" role="button"
+             aria-controls="addProject"
+             aria-haspopup="true"
+             aria-expanded="false"
+             data-unfold-event="click"
+             data-unfold-hide-on-scroll="false"
+             data-unfold-target="#addProject"
+             data-unfold-type="css-animation"
+             data-unfold-animation-in="fadeInRight"
+             data-unfold-animation-out="fadeOutRight"
+             data-unfold-duration="500">
+                    <span class="position-relative">
+                      Новый
+                      <span class="pl-2 fa fa-plus-circle text-secondary small opacity-0_2"></span>
+                    </span>
+          </a>
         </div>
       </div>
     </div>
@@ -38,3 +50,73 @@
     </div>
   </div>
 </main>
+<%= simple_form_for @project, remote: true do |f| %>
+<aside id="addProject" class="u-sidebar w-75 u-unfold--css-animation u-unfold--hidden" aria-labelledby="addProjectInvoker">
+  <div class="u-sidebar__scroller">
+    <div class="u-sidebar__container">
+      <div class="u-sidebar--account__footer-offset">
+        <div class="d-flex justify-content-between align-items-center pt-4 px-7">
+          <h3 class="h6 mb-0"><%= f.input :title, label: false do %>
+              <div class="input-group input-group-sm u-form u-form--sm u-form--modern">
+                <%= f.input_field :title, hint: false, placeholder: 'Название проекта', class: 'form-control u-form__input u-no__focus u-no__border-color u-no__image' %>
+              </div>
+            <% end %></h3>
+          <button type="button" class="close ml-auto"
+                  aria-controls="addProject"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-unfold-event="click"
+                  data-unfold-hide-on-scroll="false"
+                  data-unfold-target="#addProject"
+                  data-unfold-type="css-animation"
+                  data-unfold-animation-in="fadeInRight"
+                  data-unfold-animation-out="fadeOutRight"
+                  data-unfold-duration="500">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="js-scrollbar u-sidebar__body">
+          <div class="u-sidebar__content--account  mr-0 ml-0">
+              <div class="u-space-1-bottom mt-1">
+                <div class="row">
+                  <div class="col-md-3 pr-2">
+                        <div class="form-group u-no__bordered">
+                          <label class="form-control-label">Предпологаемый бюджет</label>
+                          <%= f.input :budget, label: false %>
+                        </div>
+                        <div class="form-group u-no__bordered">
+                          <label class="form-control-label">Стоимость часа</label>
+                          <%= f.input :cost_per_hour, label: false %>
+                        </div>
+                        <div class="form-group u-no__bordered">
+                          <label class="form-control-label">Компания</label>
+                          <%= f.association :contractor, label_method: :title, class: 'form-control form-control-sm u-no__focus u-no__border-color u-no__image', label: false, include_blank: false %>
+                        </div>
+                        <div class="form-group u-no__bordered">
+                          <label class="form-control-label">Владелец</label>
+                          <%= f.association :user, label_method: :email, label: false, include_blank: false %>
+                        </div>
+                  </div>
+                  <div class="col-md-9">
+                        <%= f.input :discription, label: 'Содержание' do %>
+                          <div class="input-group input-group-sm u-form u-form--sm u-form--modern u-summernote-editor">
+                            <%= f.text_area :description, class: 'form-control u-form__input js-summernote-editor' %>
+                          </div>
+                        <% end %>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <footer class="u-sidebar__footer u-sidebar__footer--account">
+        <div class="position-absolute-bottom-0">
+          <div class="p-3 ml-5">
+          <%= f.button :submit,'Сохранить',  class: 'btn btn-success btn-xs' %>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</aside>
+<% end %>
