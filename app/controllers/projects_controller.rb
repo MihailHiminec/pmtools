@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.save
         format.html { redirect_to @projects, notice: 'Проект добавлен!' }
+        format.js
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

@@ -26,27 +26,9 @@
       </div>
     </div>
     <div class="container-fluid u-space-1-bottom u-space-bottom-0--lg">
-      <!-- Nav -->
-      <div class="row mt-4 mr-1 ml-1 mb-4">
-        <div class="col-md-12 order-md-1">
-          <%= form_for @search, as: :f, method: :get, url: projects_path, :html => {:class => 'input-group-sm u-form u-form--sm u-form--modern'} do |e| %>
-            <%= e.search_field :title, class: 'form-control u-form__input', placeholder: 'Поиск' %>
-            <%= link_to 'Дата создания', projects_path(f: @search.sort_params_for(:created_at)), class: @search.sort?(:created_at) && 'u-label u-label--xs u-label--primary active' %>
-            <%= e.select :user_id, User.all.map { |u| [u.name, u.id] }, { :include_blank => 'Все проекты' }, {class: 'js-select u-select', 'data-width' => 'fit', 'data-style' => 'bg-transparent text-secondary font-size-14 font-weight-normal pl-0', onchange: 'this.form.submit()'} %>
-          <% end %>
-        </div>
-      </div>
-      <!-- End Nav -->
-
-      <% if @search.results? %>
-        <ul class="list-group shadow-sm">
-            <%= render 'projects/project' %>
+        <ul id="projects" class="list-group shadow-sm">
+            <%= render @projects %>
         </ul>
-        <% else %>
-        <div class="alert alert-primary alert-dismissible fade show pt-8 mt-8 mb-8 pb-8" role="alert">
-          К сожалению проектов не найдено
-        </div>
-      <% end %>
     </div>
   </div>
 </main>
